@@ -1,0 +1,61 @@
+#carousel{
+  position : relative;
+  overflow : hidden;
+  width : 300px;
+  height: 200px;
+}
+
+#images a{
+  display : none;
+  opacity : 0;
+  width : 300px;
+  height : 200px;
+  position : absolute;
+  top : 0px;
+  left : 0px;
+}
+
+#images a img{
+  width : 300px;
+  height : 200px;
+  position : absolute;
+  top : 0px;
+  left : 0px;	
+}
+
+
+#indicator{
+  position : absolute;
+  bottom : 0px;
+  background : rgba(0, 0, 0, 0.4);
+  width : 280px;
+  padding-left: 20px;
+}
+
+#indicator a{
+	display: inline-block;
+	position : relative;
+	padding-right: 2px;
+}
+
+#indicator img{
+   width : 60px;
+   height : 40px;
+}
+
+#indicator a.active{
+  border : 1px solid yellow;
+  opacity : 1;
+}
+
+#indicator .indicator-bg{
+	opacity : 0.4;
+	width : 60px;
+	height: 40px;
+	position : absolute;
+	background-color: black;
+}
+
+#indicator .active .indicator-bg {
+	display : none;
+}

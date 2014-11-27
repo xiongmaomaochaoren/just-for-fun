@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+			carousel的组件化
+		</title>
+		<style type="text/css">
+
+			
+		</style>
+		<script type="text/javascript" src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+		<link rel="import" href="./element/img-carousel.html"/>
+	</head>
+	<body>
+		<template id="animation-carousel-template">
+			<style type="text/css">
+				/*css动画自动carousel*/
+				#animation-carousel{
+					position: relative;
+					top : 100px;
+					width: 300px;
+					height: 200px;
+					overflow: hidden;
+				}	
+				#animation-carousel-img{
+					position: absolute;
+					width: 2000px;
+					height: 200px;
+					-webkit-animation : carousel-move 4s linear alternate infinite;
+				}
+				#animation-carousel-img img{
+					float: left;
+					width: 300px;
+					height: 200px;
+				}
+				@-webkit-keyframes carousel-move{
+					0%{
+						-webkit-transform : translate(0px, 0px);
+					}
+					100%{
+						-webkit-transform : translate(-900px, 0px);
+					}
+				}
+			</style>
+			<div id="animation-carousel">
+				<div id="animation-carousel-img">
+					<img src="./img/img_1.jpg"/>
+					<img src="./img/img_2.jpg"/>
+					<img src="./img/img_3.jpg"/>
+					<img src="./img/img_4.jpg"/>
+				</div>
+			</div>	
+		</template>
+		<!--原生技术实现自定义标签-->
+		<script type="text/javascript">
+			var ImgSliderPrototype = Object.create(HTMLElement.prototype);
+			ImgSliderPrototype.createdCallback = function(){
+				var animationTemplate = document.getElementById("animation-carousel-template"),
+					animationHtml = animationTemplate.innerHTML,
+					root = this.createShadowRoot();
+				root.innerHTML = animationHtml;
+			}
+			ImgSlider = document.registerElement("img-slider", {
+				prototype : ImgSliderPrototype
+			});
+		</script>
+		<img-slider></img-slider>
+
+
+		<!--使用polymer开发carousel组件-->
+		<img-carousel></img-carousel>
+
+		
+	</body>
+</html>
+<!--
+
+-->

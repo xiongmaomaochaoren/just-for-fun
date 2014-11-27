@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+			
+		</title>
+		<style type="text/css">
+
+			/*纯css实现carousel*/
+			#css-carousel{
+				position: relative;
+				top : 100px;
+				width: 300px;
+				height:200px;
+				overflow: hidden;
+			}
+			#css-carousel-img{
+				width: 2000px;
+				height: 200px;
+			}
+			#css-carousel-img img{
+				float: left;
+				width: 300px;
+				height:200px;
+			}
+			#css-carousel-img{
+				-webkit-transition : all 1s ease-out;
+			}
+			#carousel-radio-1:checked ~ #css-carousel-img{
+				margin-left: 0px;
+			}
+			#carousel-radio-2:checked ~ #css-carousel-img{
+				margin-left: -300px;
+			}
+			#carousel-radio-3:checked ~ #css-carousel-img{
+				margin-left: -600px;
+			}
+			#carousel-radio-4:checked ~ #css-carousel-img{
+				margin-left: -900px;
+			}
+			#css-carousel-label{
+				position: absolute;
+				left: 40%;
+				bottom: 10px;
+			}
+			input[type=radio]{
+				display: none;
+			}
+			#css-carousel-label label{
+				border-radius : 5px;
+				width: 10px;
+				height: 10px;
+				display: inline-block; 
+				background: #CCC;
+			}
+			#carousel-radio-1:checked ~ #css-carousel-label label[for=carousel-radio-1],
+			#carousel-radio-2:checked ~ #css-carousel-label label[for=carousel-radio-2],
+			#carousel-radio-3:checked ~ #css-carousel-label label[for=carousel-radio-3],
+			#carousel-radio-4:checked ~ #css-carousel-label label[for=carousel-radio-4]{
+				background-color: red;
+			}
+
+			/*css动画自动carousel*/
+			#animation-carousel{
+				position: relative;
+				top : 100px;
+				width: 300px;
+				height: 200px;
+				overflow: hidden;
+			}	
+			#animation-carousel-img{
+				position: absolute;
+				width: 2000px;
+				height: 200px;
+				-webkit-animation : carousel-move 4s linear alternate infinite;
+			}
+			#animation-carousel-img img{
+				float: left;
+				width: 300px;
+				height: 200px;
+			}
+			@-webkit-keyframes carousel-move{
+				0%{
+					-webkit-transform : translate(0px, 0px);
+				}
+				100%{
+					-webkit-transform : translate(-900px, 0px);
+				}
+			}			
+		</style>
+	</head>
+	<body>
+		
+		<div id="animation-carousel">
+			<div id="animation-carousel-img">
+				<img src="./img/img_1.jpg"/>
+				<img src="./img/img_2.jpg"/>
+				<img src="./img/img_3.jpg"/>
+				<img src="./img/img_4.jpg"/>
+			</div>
+		</div>	
+		
+
+		<div id="css-carousel">
+			<input id="carousel-radio-1" type="radio" name="pic"/>
+			<input id="carousel-radio-2" type="radio" name="pic"/>
+			<input id="carousel-radio-3" type="radio" name="pic"/>
+			<input id="carousel-radio-4" type="radio" name="pic"/>
+			<div id="css-carousel-img">
+				<img src="./img/img_1.jpg"/>
+				<img src="./img/img_2.jpg"/>
+				<img src="./img/img_3.jpg"/>
+				<img src="./img/img_4.jpg"/>
+			</div>
+			<div id="css-carousel-label">
+				<label for="carousel-radio-1"></label>
+				<label for="carousel-radio-2"></label>
+				<label for="carousel-radio-3"></label>
+				<label for="carousel-radio-4"></label>
+			</div>
+		</div>
+
+	</body>
+</html>
+<!--
+
+-->

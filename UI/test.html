@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>照片墙</title>
+		<style type="text/css">
+			#pic-wall{
+				width : 100%;
+				height: 100%;
+				position: relative;
+			}
+			.img-album{
+				width : 150px;
+				height: 200px;
+				padding : 5px;
+				overflow: hidden;
+				position: absolute;
+				-webkit-box-shadow : 2px 2px 3px #aaaaaa;
+			}
+			#pic-wall div:hover{
+				-webkit-transform : scale(1.2,1.2) rotate(6deg);
+				z-index : 999;
+				-webkit-box-shadow : 2px 2px 3px black;	
+			}
+			.img-album img{
+				width: 150px;
+				height: 200px;
+			}
+
+			.divcss5{ 
+				width:400px;padding:10px;border:1px solid #F00;
+
+			} 
+			.divcss5_left{ 
+				float:left;width:250px;border:1px solid #00F;height:50px
+			} 
+			.divcss5_right{ 
+				float:right;width:250px;border:1px solid #00F;height:50px
+			} 
+			.inner{
+				width : 1000px;
+			}
+			.clear{ 
+				clear:both
+			} 
+			#outer{
+				border : 1px solid red;
+				width : 800px;
+			}
+			#inner{
+				border: 1px solid blue;
+				width: 200px;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		
+			
+		<div class="divcss5"> 
+			<div class="inner">
+				<div class="divcss5_left">布局靠左浮动</div> 
+		    	<div class="divcss5_right">布局靠右浮动</div> 
+		    	<div class="clear"></div><!-- html注释：清除float产生浮动 --> 	
+			</div>
+		</div> 
+
+		<div id="outer">
+			<div id="inner">里层</div>
+		</div>
+
+		<div class="container"></div>
+
+
+		<script type="text/javascript">
+			
+			
+		</script>
+	</body>
+</html>
