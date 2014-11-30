@@ -1,0 +1,69 @@
+
+<link rel="import" href="../bower_components/polymer/polymer.html"/>
+<!--
+1. 获取所有的img生成一个个相框字符串
+2. 插入到pic-wall中
+3. 各个图片绑定预定事件处理
+-->
+<polymer-element name="pic-wall" attribute="draggable">
+	<template>
+		<style type="text/css">
+			#picWall{
+				width : 100%;
+				height: 100%;
+				position: relative;
+			}
+			.img-album{
+				width : 150px;
+				height: 200px;
+				padding : 5px;
+				overflow: hidden;
+				position: absolute;
+				-webkit-box-shadow : 2px 2px 3px #aaaaaa;
+			}
+			.img-album:hover{
+				cursor : "hand";
+			}
+			.img-album img{
+				width: 150px;
+				height: 200px;
+			}
+		</style>
+		<div id="picWall">
+			
+		</div>
+
+	</template>
+	
+	<script type="text/javascript" src="../js/require.js"></script>
+	<script type="text/javascript">
+	
+		requirejs(["../js/lib/picwall.js"], function(Picwall){
+
+			
+			Polymer("pic-wall", {
+				domReady : function(){
+					var images = [
+							"../img/img_1.jpg",
+							"../img/img_2.jpg",
+							"../img/img_3.jpg",
+							"../img/img_4.jpg",
+							"../img/img_5.jpg",
+							"../img/img_6.jpg",
+							"../img/img_7.jpg",
+							"../img/img_8.jpg",
+							"../img/img_9.jpg",
+							"../img/img_10.jpg",
+						];
+					var wallDiv= this.$.picWall;
+					var picwall = new Picwall(wallDiv, images, {
+						left : 700,
+						top : 500
+					});		
+					picwall.init();
+				}
+			});	
+		});
+	
+	</script>
+</polymer-element>

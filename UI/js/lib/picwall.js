@@ -10,9 +10,8 @@ define(["./eventcenter.js", "./util.js", "./drag.js"], function(Eventcenter, Uti
 	 *   draggable : 是否可拖拽
 	 */
 	function Picwall(id, pics, options){
-		var self = this,
-			wallDiv = document.getElementById(id);
-
+		var self = this;
+		var wallDiv = (typeof id == "string") ? document.getElementById(id) : id;
 		self.el = wallDiv;
 		self.pics = pics;
 		options = options || {};
@@ -30,7 +29,7 @@ define(["./eventcenter.js", "./util.js", "./drag.js"], function(Eventcenter, Uti
 			if(Math.random() > 0.5){
 				deg = 0-deg;
 			}
-			imgStr += "<div class=\"img-album\" data-deg=\"" + deg + "\" style=\"left:" + left + "px;top:" + top + "px;-webkit-transform:rotate(" + deg + "deg);\">";
+			imgStr += "<div class=\"img-album\" data-deg=\"" + deg + "\" style=\"left:" + left + "px;top:" + top + "px;-moz-transform:rotate(" + deg + "deg);-webkit-transform:rotate(" + deg + "deg);\">";
 			imgStr += "<img src=\"" + self.pics[i] + "\"/>";
 			imgStr += "</div>";
 		}
@@ -51,6 +50,8 @@ define(["./eventcenter.js", "./util.js", "./drag.js"], function(Eventcenter, Uti
 						Util.applyStyles(e.currentTarget, {
 							"-webkit-transition" : "all 0.5s",
 							"-webkit-transform" : "rotate(0deg) scale(1.2,1.2)",
+							"-moz-transition" : "all 0.5s",
+							"-moz-transform" : "rotate(0deg) scale(1.2,1.2)",
 							"z-index" : 999
 						});	
 					}
@@ -61,6 +62,7 @@ define(["./eventcenter.js", "./util.js", "./drag.js"], function(Eventcenter, Uti
 						var transform = "rotate(" + deg + "deg)";
 						Util.applyStyles(e.currentTarget, {
 							"-webkit-transform" : transform,
+							"-moz-transform" : transform,
 							"z-index" : 0
 						});
 					}

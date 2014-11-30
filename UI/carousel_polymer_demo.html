@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+			carousel的组件化
+		</title>
+		<style type="text/css">
+
+			#img-component img{
+				float: left;
+				width: 300px;
+				height:200px;
+			}
+		</style>
+		<script type="text/javascript" src="./bower_components/webcomponentsjs/webcomponents.js"></script>
+		<link rel="import" href="./components/carousel-polymer-component.html"/>
+	</head>
+	<body>
+
+		<!--使用polymer开发carousel组件-->
+		<img-carousel id="img-component">
+			<img src="./img/img_1.jpg"/>
+			<img src="./img/img_2.jpg"/>
+			<img src="./img/img_3.jpg"/>
+			<img src="./img/img_4.jpg"/>
+		</img-carousel>
+
+		<div>使用Polymer开发carousel component</div>
+	</body>
+</html>
+<!--
+
+-->

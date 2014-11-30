@@ -14,7 +14,7 @@ requirejs(["./lib/carousel"], function(Carousel){
 	];
 	var carousel = new Carousel("carousel", images, srcs);
 	carousel.init();
-	//carousel.autoSlide();
+	carousel.autoSlide();
 
 	carousel.on("slide", function(){
 		console.log("slide event catched");

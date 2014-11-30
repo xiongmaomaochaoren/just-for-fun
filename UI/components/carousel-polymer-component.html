@@ -1,6 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html"/>
 
-<polymer-element name="img-carousel" noscript>
+<polymer-element name="img-carousel">
 	<template>
 		<style type="text/css">
 			/*纯css实现carousel*/
@@ -11,28 +11,26 @@
 				height:200px;
 				overflow: hidden;
 			}
-			#css-carousel-img{
+			#cssCarouselImg{
 				width: 2000px;
 				height: 200px;
+				-webkit-transition : all 1s ease-out;
 			}
-			#css-carousel-img img{
+			#cssCarouselImg img{
 				float: left;
 				width: 300px;
 				height:200px;
 			}
-			#css-carousel-img{
-				-webkit-transition : all 1s ease-out;
-			}
-			#carousel-radio-1:checked ~ #css-carousel-img{
+			#carousel-radio-1:checked ~ #cssCarouselImg{
 				margin-left: 0px;
 			}
-			#carousel-radio-2:checked ~ #css-carousel-img{
+			#carousel-radio-2:checked ~ #cssCarouselImg{
 				margin-left: -300px;
 			}
-			#carousel-radio-3:checked ~ #css-carousel-img{
+			#carousel-radio-3:checked ~ #cssCarouselImg{
 				margin-left: -600px;
 			}
-			#carousel-radio-4:checked ~ #css-carousel-img{
+			#carousel-radio-4:checked ~ #cssCarouselImg{
 				margin-left: -900px;
 			}
 			#css-carousel-label{
@@ -62,11 +60,8 @@
 			<input id="carousel-radio-2" type="radio" name="pic"/>
 			<input id="carousel-radio-3" type="radio" name="pic"/>
 			<input id="carousel-radio-4" type="radio" name="pic"/>
-			<div id="css-carousel-img">
-				<img src="../img/img_1.jpg"/>
-				<img src="../img/img_2.jpg"/>
-				<img src="../img/img_3.jpg"/>
-				<img src="../img/img_4.jpg"/>
+			<div id="cssCarouselImg">
+				
 			</div>
 			<div id="css-carousel-label">
 				<label for="carousel-radio-1"></label>
@@ -76,4 +71,11 @@
 			</div>
 		</div>
 	</template>
+	<script type="text/javascript">
+		Polymer("img-carousel", {
+			domReady : function(){
+				this.$.cssCarouselImg.innerHTML = this.innerHTML;
+			}
+		});
+	</script>>
 </polymer-element>

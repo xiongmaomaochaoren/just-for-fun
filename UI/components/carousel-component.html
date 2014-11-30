@@ -1,0 +1,58 @@
+<!--
+	1. 自定义标签技术
+	2. Shadow Dom技术
+	3. HTML Import能力
+-->
+
+<template id="x-template">
+	<style type="text/css">
+		/*css动画自动carousel*/
+		#animationCarousel{
+			position: relative;
+			top : 100px;
+			width: 300px;
+			height: 200px;
+			overflow: hidden;
+		}	
+		#animationCarouselImg{
+			position: absolute;
+			width: 2000px;
+			height: 200px;
+			-webkit-animation : carousel-move 4s linear alternate infinite;
+		}
+		#animationCarouselImg img{
+			float: left;
+			width: 300px;
+			height: 200px;
+		}
+		@-webkit-keyframes carousel-move{
+			0%{
+				-webkit-transform : translate(0px, 0px);
+			}
+			100%{
+				-webkit-transform : translate(-900px, 0px);
+			}
+		}
+	</style>
+	<div id="animationCarousel">
+		<div id="animationCarouselImg">
+			<img src="./img/img_1.jpg"/>
+			<img src="./img/img_2.jpg"/>
+			<img src="./img/img_3.jpg"/>
+			<img src="./img/img_4.jpg"/>
+		</div>
+	</div>	
+</template>
+
+<script type="text/javascript" src="../js/lib/XElement.js"></script>
+<script type="text/javascript">
+
+	var imgSliderElement = new XElement("img-slider", {
+		createdCallback : function(){
+			var root = this.createShadowRoot();
+			root.innerHTML = this.template;
+			console.log(this.$);
+		}
+	});
+
+</script>
