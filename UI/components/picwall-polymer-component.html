@@ -38,22 +38,22 @@
 	<script type="text/javascript" src="../js/require.js"></script>
 	<script type="text/javascript">
 	
-		requirejs(["../js/lib/picwall.js"], function(Picwall){
+		requirejs(["./js/lib/picwall.js"], function(Picwall){
 
 			
 			Polymer("pic-wall", {
 				domReady : function(){
 					var images = [
-							"../img/img_1.jpg",
-							"../img/img_2.jpg",
-							"../img/img_3.jpg",
-							"../img/img_4.jpg",
-							"../img/img_5.jpg",
-							"../img/img_6.jpg",
-							"../img/img_7.jpg",
-							"../img/img_8.jpg",
-							"../img/img_9.jpg",
-							"../img/img_10.jpg",
+							"./img/img_1.jpg",
+							"./img/img_2.jpg",
+							"./img/img_3.jpg",
+							"./img/img_4.jpg",
+							"./img/img_5.jpg",
+							"./img/img_6.jpg",
+							"./img/img_7.jpg",
+							"./img/img_8.jpg",
+							"./img/img_9.jpg",
+							"./img/img_10.jpg",
 						];
 					var wallDiv= this.$.picWall;
 					var picwall = new Picwall(wallDiv, images, {
