@@ -1,4 +1,4 @@
-
+console.log("==========我是华丽丽的分割线===========");
 var fs = require("fs");
 
 var file = __filename;
@@ -11,4 +11,3 @@ var os = require("os");
 
 console.log(os.type());
 console.log(os.platform());
-console.log(os.cpus());
