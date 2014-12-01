@@ -55,5 +55,8 @@ define({
 		    }
 		});
 		return str;
+	},
+	request : function(){
+		
 	}
 });

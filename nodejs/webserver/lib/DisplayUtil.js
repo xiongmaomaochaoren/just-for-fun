@@ -1,4 +1,5 @@
 var fs = require("fs");
+var Path = require("path");
 var exec = require("child_process").exec;
 
 var Display = {
@@ -191,8 +192,8 @@ var Display = {
 		var files = fs.readdirSync(pathInfo["path"]);
 		var htmlStr = "<ul>";
 		for(var i=0; i<files.length; i++){
-			var path = "/" + pathInfo["subpath"] + "/" + files[i];
-			var href = path.replace(/\/(\/)+/,"/");
+			var filepath = "/" + pathInfo["subpath"] + "/" + files[i];
+			var href = Path.normalize(filepath);
 			htmlStr += "<li><a href=\"" + href + "\">" + files[i] + "</a></li>";
 		}
 		htmlStr += "</ul>";

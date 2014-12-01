@@ -8,11 +8,19 @@
  *    cluster方案
  */
 
+/**
+ * Http模块理解
+ * 		对API的理解
+ * 		和Net模块的关系：net模块API理解
+ */
 var http = require("http"),
-	fs = require("fs");
+	fs = require("fs"),
+	Path = require("path");
 
 var Parser = require("./ParserUtil.js"),
 	Display = require("./DisplayUtil.js");
+
+var ServerRoot = Path.dirname(__dirname);
 
 function HttpServer(port, root){
 	this.webroot = root;
@@ -20,7 +28,20 @@ function HttpServer(port, root){
 	this.server = null;
 }
 
+/**
+ * 路由规则：
+ * 
+ */
 HttpServer.prototype.start = function(){
+
+	function handleAction(urlInfo, req, res){
+		var actionFile = Path.normalize(ServerRoot + Path.sep + urlInfo["token"][0] + Path.sep + urlInfo["token"][1] + ".js");
+		if(fs.existsSync(actionFile)){
+			var action = require(actionFile);
+			action(urlInfo, req, res);
+		}
+	}
+
 	var self = this;
 	var server = http.createServer(function(req, res){
 		if(req.method.toLowerCase() == "get"){
@@ -34,6 +55,8 @@ HttpServer.prototype.start = function(){
 				}else if(pathInfo.type == "directory"){
 					Display.displayDirectory(pathInfo, res);
 				}
+			}else if(urlInfo["token"][0] == "action"){
+				handleAction(urlInfo, req, res);
 			}else{
 				res.writeHead(404);
 				res.end();
@@ -50,5 +73,7 @@ HttpServer.prototype.start = function(){
 	server.listen(this.port);
 	this.server = server;
 }
+
+
 
 module.exports = HttpServer;

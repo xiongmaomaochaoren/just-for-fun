@@ -1,21 +1,21 @@
-var fs = require("fs");
+var fs = require("fs"),
+	Path = require("path");
 
 var Parser = {
-	parsePath : function(path){
-		var pathStat = fs.statSync(path),
+	parsePath : function(filepath){
+		var pathStat = fs.statSync(filepath),
 			pathInfo = {};
 
 		if(pathStat.isFile()){
 			pathInfo.type = "file";
-			var pathTokens = path.split(".");
-			pathInfo.ext = pathTokens[pathTokens.length - 1];
+			pathInfo.ext = Path.extname(filepath);
 		}else if(pathStat.isDirectory()){
 			pathInfo.type = "directory";
 		}else{
 			pathInfo.type = "other";
 		}
 		pathInfo["size"] = pathStat.size;
-		pathInfo["path"] = path;
+		pathInfo["path"] = filepath;
 
 		return pathInfo;
 	},
@@ -24,6 +24,13 @@ var Parser = {
 			urlInfo = {};
 
 		urlInfo["path"] = urlTokens[0];
+		var pathTokens = urlTokens[0].split(Path.sep);
+		for(var i=0; i<pathTokens.length; i++){
+			if(pathTokens[i] == ""){
+				pathTokens.splice(i, 1);
+			}
+		}
+		urlInfo["token"] = pathTokens;
 		if(urlTokens[1]){
 			var params = {},
 				paramTokens = urlTokens[1].split("&");
