@@ -8,7 +8,7 @@ var Parser = {
 
 		if(pathStat.isFile()){
 			pathInfo.type = "file";
-			pathInfo.ext = Path.extname(filepath);
+			pathInfo.ext = Path.extname(filepath).replace(".", "");
 		}else if(pathStat.isDirectory()){
 			pathInfo.type = "directory";
 		}else{
