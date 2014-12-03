@@ -2,7 +2,7 @@
 requirejs(["./js/lib/util.js", "./js/lib/eventutil.js", "./js/lib/waterfall.js"], function(Util, EventUtil, Waterfall){
 
 
-	var columnNum = 4,
+	var columnNum = 5,
 		lineNum = 2,
 		id = "waterfall_ui",
 		baseUrl = "http://localhost:8090/action/image";
