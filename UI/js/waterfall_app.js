@@ -1,6 +1,4 @@
-
 requirejs(["./js/lib/util.js", "./js/lib/eventutil.js", "./js/lib/waterfall.js"], function(Util, EventUtil, Waterfall){
-
 
 	var columnNum = 5,
 		lineNum = 2,
