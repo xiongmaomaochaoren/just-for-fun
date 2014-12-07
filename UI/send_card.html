@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <script type="text/javascript">
+        function genCards(){
+            var color = ["黑桃","红桃","梅花","方块"];
+            var nums = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+            var cards = [];
+            for(var colorIndex=0; colorIndex<color.length; colorIndex++){
+                for(var numIndex=0; numIndex<nums.length; numIndex++){
+                    var card = color[colorIndex] + nums[numIndex];
+                    cards.push(card);
+                }
+            }
+            return cards;
+        }
+        function getRandomNum(start, end){
+            var range = end - start;
+            var random = Math.random();
+            var num = start + Math.round(range * random);
+            return num;
+        }
+        function sendCards(cards, peoples){
+            var peopleCards = {};
+            for(var peopleIndex=0; peopleIndex<peoples.length; peopleIndex++){
+                peopleCards[peoples[peopleIndex]] = [];
+            }
+            while(cards.length > 0){
+                for(var peopleIndex=0; peopleIndex<peoples.length; peopleIndex++){
+                    if(cards.length > 0){
+                        var cardNum = getRandomNum(0, cards.length-1);
+                        peopleCards[peoples[peopleIndex]].push(cards[cardNum]);
+                        cards.splice(cardNum, 1);
+                    }
+                }
+            }
+            return peopleCards;
+        }
+
+        var cards = genCards();
+        console.log(cards);
+        var peoples = ["大理","丽江","香格里拉","拉萨"];
+        var cardResult = sendCards(cards, peoples);
+        console.log(cardResult);
+
+    </script>
+</body>
+</html>
