@@ -40,6 +40,15 @@
 			.brick_waterfall_column_outer_6{
 				width : 16%;
 			}
+			/*top、left什么时候生效， 什么时候可以使用center，什么时候不可以使用*/
+			#navigate{
+				z-index : 999;
+				position: fixed;
+				top : 50%;
+				right: 0px;
+				width : 20px;
+				border: solid 1px blue;
+			}
 		</style>
 
 	</head>
@@ -47,6 +56,13 @@
 		<div id="waterfall_ui">
 
 		</div>
+		<div id="navigate">返回页面顶部</div>
 		<script type="text/javascript" data-main="./js/waterfall_app.js" src="./js/require.js"></script>
+		<script type="text/javascript">
+			var navigateDiv = document.getElementById("navigate");
+			navigateDiv.onclick = function(){
+				window.scrollTo(0, 0);
+			}
+		</script>
 	</body>
 </html>

@@ -12,7 +12,7 @@ define({
 	},
 	isAncestor : function(source,target){
 		var result = false;
-		while(source.parentNode){
+		while(source.parentNode != null){
 			if(source.parentNode == target){
 				result = true;
 				break;
@@ -157,6 +157,18 @@ define({
 		return {
 			value : max,
 			index : maxIndex
+		}
+	},
+	//遍历id的所有节点，调用cb，将节点作为参数传入
+	travelsNode : function(id, cb){
+		var node = (typeof id == "string") ? document.getElementById(id) : id;
+		if(node.hasChildNodes()){
+			//todo : 查看node关系列表
+			var children = node.children;
+			for(var nodeIndex=0; nodeIndex<children.length; nodeIndex++){
+				travelsNode(children[nodeIndex], cb);
+			}
+			cb(node);
 		}
 	}
 });
