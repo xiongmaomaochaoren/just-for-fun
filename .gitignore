@@ -1,5 +1,7 @@
 /.idea
 node_modules/
+doc/interview/
+doc/resume.md
 
 .DS_Store
 *.db

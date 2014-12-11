@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Ajax Demo</title>
+    <script type="text/javascript">
+
+        /*XMLRequest的Ajax
+        function sendRequest(url, callback){
+            var xmlRequest = null;
+            if(window.XMLHttpRequest){
+                xmlRequest = new XMLHttpRequest();
+            }else{
+                xmlRequest = new ActiveXObject("Microsoft.XMLHttp");
+            }
+            xmlRequest.onReadyStateChange = function(){
+                if(xmlRequest.readyState == 4 && xmlRequest.status == 200){
+                    callback(xmlRequest.responseText);
+                }
+            }
+            xmlRequest.open("GET", url, true);
+            xmlRequest.send();
+        }
+        document.addEventListener("DOMContentLoaded", function(){
+            var url = "http://www.baidu.com";
+            sendRequest(url, function(responseText){
+                document.body.innerHTML = responseText;
+            })
+        }, false);
+        */
+
+        /*Dynamic script tag insert*/
+        function jsonCallback(data){
+            console.log(data);
+        }
+        var jsSrc = "http://localhost:8090/UI/js/ajax.js";
+        var scriptNode = document.createElement("script");
+        scriptNode.setAttribute("src",jsSrc);
+        scriptNode.setAttribute("type", "text/javascript");
+        document.head.appendChild(scriptNode);
+    </script>
+</head>
+<body>
+    <!--
+        Ajax的本质
+            1. 与服务器通信而不用刷新页面的能力(发送数据、接收数据)
+            2. 异步发送请求而不用租塞浏览器的能力
+        有一下几种方法可以实现这种能力
+    -->
+</body>
+</html>
