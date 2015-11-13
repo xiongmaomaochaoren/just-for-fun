@@ -3,6 +3,8 @@ node_modules/
 doc/interview/
 doc/resume.md
 
+react/node_modules/
+
 .DS_Store
 *.db
 *.bak
