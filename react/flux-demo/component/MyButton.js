@@ -5,19 +5,32 @@ import ListStore from "../store/ListStore";
 import ListAction from "../action/ListAction";
 
 export default class FluxButton extends React.Component{
-    
+
     constructor(props){
         super(props);
+        this.state = {
+            listHtml : this.getListsHtml()
+        }
         this.listChange = this.listChange.bind(this);
     }
 
+    getListsHtml(){
+        let lists = ListStore.getLists();
+        let listsHtml = lists.map(function(list){
+            return <li>{list}</li>;
+        });
+        return listsHtml;
+    }
+
     listChange(){
-        this.forceUpdate();
+        this.setState({
+            listHtml : this.getListsHtml()
+        });
     }
 
     handleAddItem(){
         console.log("button click");
-        ListAction.add("有添加了一个条目");
+        ListAction.add("又添加了一个条目");
     }
 
     componentDidMount(){
@@ -29,15 +42,9 @@ export default class FluxButton extends React.Component{
     }
 
     render(){
-        let lists = ListStore.getLists();
-        
-        var listsHtml = lists.map(function(list){
-            return <li>{list}</li>;
-        });
-        
         return (
             <div>
-                <ul>{listsHtml}</ul>
+                <ul>{this.state.listHtml}</ul>
                 <button onClick={this.handleAddItem}>添加一条记录</button>
             </div>
         );
