@@ -1,10 +1,20 @@
 
 ### 开发步骤
 
-* 设计Action
-* 设计State
-* 设计Reduces
-* 设计Components
+#### 设计Action
+#### 设计State
+#### 设计Reduces
+#### 设计Components
+
+* 组件的拆分
+* 组件的预期使用方式
+
+    <!--Todo Demo-->
+    <App>
+        <AddTodo onAddTodoClick={handleAddTodoClick}/>
+        <TodoList todos={this.state.todos} onTodoListClick={handleTodoListClick}/>
+        <TodoFooter onTodoFooterClick={handleTodoFooterClick}/>
+    </App>
 
 
 ### Action

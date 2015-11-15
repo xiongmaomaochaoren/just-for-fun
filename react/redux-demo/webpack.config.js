@@ -2,7 +2,8 @@
 var webpack = require("webpack");
 
 var config = {
-    entry : "./tests/reduxTest.js",
+    //entry : "./tests/reduxTest.js",
+    entry : "./index.js",
     output : {
         filename : "./bundle.js"
     },
