@@ -16,6 +16,7 @@
         <TodoFooter onTodoFooterClick={handleTodoFooterClick}/>
     </App>
 
+#### React和Redux连接
 
 ### Action
 
