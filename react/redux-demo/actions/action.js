@@ -8,6 +8,7 @@
  */
 
 import * as actionTypes from "../constants/ActionTypes";
+import fetch from 'isomorphic-fetch';
 
 export function addTodoAction(text){
     return {
@@ -27,5 +28,30 @@ export function switchFileAction(filter){
     return {
         type : actionTypes.SWITCH_FILTER,
         payload : {filter}
+    }
+}
+
+export function requestTodos(){
+    return {
+        type : actionTypes.REQUEST_TODOS
+    }
+}
+
+export function receiveTodos(todos){
+    return {
+        type : actionTypes.RECEIVE_TODOS,
+        payload : {todos}
+    }
+}
+
+export function fetchTodos(){
+    let fetchUrl = "http://localhost:8887/";
+    return function(dispatch){
+        dispatch(requestTodos());
+        return fetch(fetchUrl)
+                .then(function(response){
+                    return response.json();
+                })
+                .then( (response) => dispatch(receiveTodos(response)));
     }
 }

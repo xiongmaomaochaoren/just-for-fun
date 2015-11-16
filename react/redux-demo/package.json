@@ -23,11 +23,14 @@
     "css-loader": "^0.22.0",
     "express": "^4.13.3",
     "flux": "^2.1.1",
+    "isomorphic-fetch": "^2.2.0",
     "jsx-loader": "^0.13.2",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4",
+    "redux-thunk": "^1.0.0",
+    "sleep": "^3.0.0",
     "webpack": "^1.12.4"
   },
   "devDependencies": {

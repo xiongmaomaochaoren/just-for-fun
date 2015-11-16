@@ -1,0 +1,14 @@
+[
+    {
+        "text" : "学习使用React",
+        "complete" : true
+    },
+    {
+        "text" : "学习使用Flux",
+        "complete" : true
+    },
+    {
+        "text" : "学习使用Redux",
+        "complete" : false
+    }
+]

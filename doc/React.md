@@ -19,7 +19,12 @@
 * http://zhuanlan.zhihu.com/FrontendMagazine/19900243
 * http://blog.andrewray.me/flux-for-stupid-people/ (英文版)
 
-
 ### 其他
 
 * http://zhuanlan.zhihu.com/FrontendMagazine/19906158
+
+## Redux资料
+
+### 入门
+
+* [官网](http://rackt.org/redux/index.html)、[翻译](http://camsong.github.io/redux-in-chinese/index.html)

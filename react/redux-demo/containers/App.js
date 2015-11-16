@@ -9,6 +9,14 @@ import * as FilterConstants from "../constants/TodoFilters";
 
 class App extends Component{
 
+    componentDidMount(){
+        console.log("componentDidMount call");
+        this.props.dispatch(todoActions.fetchTodos()).then( () => {
+            console.log("callback call");
+            console.log(this.props.showTodos);
+        });
+    }
+
     handleAddTodoClick(text){
         console.log("addTodoClick!!!");
         //connect会自动注入 mapStateToProps的属性以及dispatch方法到props上
@@ -27,6 +35,7 @@ class App extends Component{
 
     render(){
         const { showTodos, showFilter} = this.props;
+        console.log(showTodos);
         return (
             <div>
                 <AddTodo onAddTodoClick={ (text) => this.handleAddTodoClick(text) }/>
@@ -56,11 +65,11 @@ function seleteShowTodos(todos, filter){
  * @param  {[type]} state [description]
  * @return {[type]}       [description]
  */
-function seleteProps(state){
+function seletePropsFromState(state){
     return {
         showTodos : seleteShowTodos(state.todos, state.showFilter),
         showFilter : state.showFilter
     }
 }
 
-export default connect(seleteProps)(App);
+export default connect(seletePropsFromState)(App);

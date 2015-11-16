@@ -18,9 +18,13 @@
 
 #### React和Redux连接
 
+* 注入dispatch、store
+
 ### Action
 
 * [官方推荐Action标准写法](https://github.com/acdlite/flux-standard-action)
+
+#### 异步Action
 
 
 ### State数据结构
