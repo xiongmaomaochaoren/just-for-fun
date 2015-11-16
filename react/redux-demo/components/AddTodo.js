@@ -8,6 +8,7 @@ export default class AddTodo extends Component{
         let inputNode = findDOMNode(this.refs.input);
         let todoText = inputNode.value.trim();
         this.props.onAddTodoClick(todoText);
+        inputNode.value = "";
     }
 
     render(){

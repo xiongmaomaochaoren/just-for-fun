@@ -2,30 +2,65 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import AddTodo from "../components/AddTodo";
 import TodoList from "../components/TodoList";
+import TodoFooter from "../components/TodoFooter";
+import * as todoActions from "../actions/action";
+import { connect } from "react-redux";
+import * as FilterConstants from "../constants/TodoFilters";
 
-export default class App extends Component{
+class App extends Component{
 
-    handleAddTodoClick(){
+    handleAddTodoClick(text){
         console.log("addTodoClick!!!");
+        //connect会自动注入 mapStateToProps的属性以及dispatch方法到props上
+        this.props.dispatch(todoActions.addTodoAction(text));
     }
 
     handleTodoListClick(index){
-        console.log("item 点击了!!!");
+        console.log(`${index} item 点击了!!!`);
+        this.props.dispatch(todoActions.completeTodoAction(index));
+    }
+
+    handleTodoFooterClick(type){
+        console.log(`筛选type ${type}`);
+        this.props.dispatch(todoActions.switchFileAction(type));
     }
 
     render(){
+        const { showTodos, showFilter} = this.props;
         return (
             <div>
-                <AddTodo onAddTodoClick={ () => this.handleAddTodoClick() }/>
-                <TodoList todos={[{
-                            text: 'Use Redux',
-                            completed: true
-                          }, {
-                            text: 'Learn to connect it to React',
-                            completed: false
-                          }]}
-                          onTodoListClick={ (index) => this.handleTodoListClick(index) } />
+                <AddTodo onAddTodoClick={ (text) => this.handleAddTodoClick(text) }/>
+                <TodoList todos={this.props.showTodos} onTodoListClick={ (index) => this.handleTodoListClick(index) } />
+                <TodoFooter onTodoFooterClick={ (type) => this.handleTodoFooterClick(type) } />
             </div>
         )
     }
 }
+
+function seleteShowTodos(todos, filter){
+    switch(filter){
+        case FilterConstants.ALL:
+            return todos;
+            break;
+        case FilterConstants.COMPLETED:
+            return todos.filter( (todo) => todo.complete);
+            break;
+        case FilterConstants.ACTIVE:
+            return todos.filter( (todo) => !todo.complete);
+            break;
+    }
+}
+
+/**
+ * 从State中返回App Component需要使用的props
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
+function seleteProps(state){
+    return {
+        showTodos : seleteShowTodos(state.todos, state.showFilter),
+        showFilter : state.showFilter
+    }
+}
+
+export default connect(seleteProps)(App);
