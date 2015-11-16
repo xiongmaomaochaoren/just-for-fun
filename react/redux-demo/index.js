@@ -9,8 +9,10 @@ let store = createStoreWithMiddleware(todoReduce);
 let rootDom = document.getElementById("redux-container");
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    <div>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </div>,
     rootDom
 );

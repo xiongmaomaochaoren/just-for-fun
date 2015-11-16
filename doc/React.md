@@ -1,4 +1,5 @@
 
+
 # React
 
 ## React 资料
@@ -28,3 +29,10 @@
 ### 入门
 
 * [官网](http://rackt.org/redux/index.html)、[翻译](http://camsong.github.io/redux-in-chinese/index.html)
+
+### 高阶
+
+* [Redux核心概念深入分析](http://www.jianshu.com/p/3334467e4b32)
+* State的范式结构
+
+    https://github.com/gaearon/normalizr
