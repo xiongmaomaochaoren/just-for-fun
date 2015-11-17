@@ -19,9 +19,9 @@ export default class TodoFooter extends Component{
                 筛选 ：
                 {"   "}
                 {this.renderFilter(TodoFilters.ALL)}
-                {"   "}
+                {"  , "}
                 {this.renderFilter(TodoFilters.COMPLETED)}
-                {"   "}
+                {"  , "}
                 {this.renderFilter(TodoFilters.ACTIVE)}
             </span>
         )

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import ReactDom from "react-dom";
-import TodoItem from "./TodoItem";
+import TodoItem from "./TodoItem/TodoItem";
 
 export default class TodoList extends Component{
     handleTodoItemClick(index){

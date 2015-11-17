@@ -1,8 +1,8 @@
 
 var webpack = require("webpack");
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var config = {
-    //entry : "./tests/reduxTest.js",
     entry : "./index.js",
     output : {
         filename : "./bundle.js"
@@ -16,9 +16,18 @@ var config = {
                 query : {
                     presets: ['es2015','react']
                 }
+            },
+            {
+                test: /\.less/,
+                loader: ExtractTextPlugin.extract('style', 'css!less')
             }
         ]
-    }
+    },
+    plugins : [
+        new ExtractTextPlugin("bundle.css", {
+            allChunks: true
+        })
+    ]
 };
 
 module.exports = config;
