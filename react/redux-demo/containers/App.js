@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import AddTodo from "../components/AddTodo";
 import TodoList from "../components/TodoList";
 import TodoFooter from "../components/TodoFooter";
+import TodoHeader from "../components/TodoHeader/TodoHeader";
 import * as todoActions from "../actions/action";
 import { connect } from "react-redux";
 import * as FilterConstants from "../constants/TodoFilters";
@@ -38,6 +39,7 @@ class App extends Component{
         console.log(showTodos);
         return (
             <div>
+                <TodoHeader />
                 <AddTodo onAddTodoClick={ (text) => this.handleAddTodoClick(text) }/>
                 <TodoList todos={this.props.showTodos} onTodoListClick={ (index) => this.handleTodoListClick(index) } />
                 <TodoFooter onTodoFooterClick={ (type) => this.handleTodoFooterClick(type) } />

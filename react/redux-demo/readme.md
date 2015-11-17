@@ -45,6 +45,12 @@
     ],
     showFilter : ""
 
+##React编译
+
+### Webpack
+
+* https://github.com/petehunt/webpack-howto
+
 
 ##TODO
 
