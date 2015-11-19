@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import("./TodoItem.less");
+require("./TodoItem.less");
 
 export default class TodoItem extends Component{
     handleItemClick(e){

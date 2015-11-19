@@ -24,8 +24,8 @@ var config = {
             //增加less支持
             {
                 test: /\.less/,
-                //loader: 'style-loader!css-loader!less-loader'
-                loader: ExtractTextPlugin.extract('style', 'css!less')
+                loader: 'style-loader!css-loader!less-loader'
+                //loader: ExtractTextPlugin.extract('style', 'css!less')
             },
             //base64\图片加载  ： https://github.com/webpack/url-loader
             {
@@ -39,9 +39,9 @@ var config = {
         ]
     },
     plugins : [
-        new ExtractTextPlugin("static/pkg/css/[name].css", {
-            allChunks: true
-        })
+        // new ExtractTextPlugin("static/pkg/css/[name].css", {
+        //     allChunks: true
+        // })
     ]
 };
 
