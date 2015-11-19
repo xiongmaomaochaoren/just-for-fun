@@ -1,9 +1,3 @@
-/**
- *
- * 参考文档 ：
- * 	http://camsong.github.io/redux-in-chinese/docs/basics/Reducers.html
- * 	http://camsong.github.io/redux-in-chinese/docs/api/combineReducers.html
- */
 
 import {ALL} from "../constants/TodoFilters";
 import * as actionTypes from "../constants/ActionTypes";

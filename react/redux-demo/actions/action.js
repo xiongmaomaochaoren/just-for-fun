@@ -62,3 +62,21 @@ export function fetchTodos(){
                 .then( (response) => dispatch(receiveTodos(response)));
     }
 }
+
+export function calAdd(value){
+    return {
+        type : actionTypes.CAL_ADD,
+        payload : {
+            value
+        }
+    }
+}
+
+export function calMinus(value){
+    return {
+        type : actionTypes.CAL_MINUS,
+        payload : {
+            value
+        }
+    }
+}

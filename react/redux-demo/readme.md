@@ -43,7 +43,8 @@
             complete : boolean
         }
     ],
-    showFilter : ""
+    showFilter : "",
+    calValue : Number
 
 ##React编译
 

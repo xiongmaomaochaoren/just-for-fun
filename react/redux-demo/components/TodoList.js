@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import TodoItem from "./TodoItem/TodoItem";
-import Dialog from "./Dialog/Dialog";
 
 export default class TodoList extends Component{
     handleTodoItemClick(index){
@@ -12,9 +11,6 @@ export default class TodoList extends Component{
     render(){
         return (
             <ul>
-                <Dialog onCloseClick="" show={}>
-                    <p>this is from dialog inner</p>
-                </Dialog>
                 {this.props.todos.map((todo, index) => {
                     return  <TodoItem
                                 {...todo}
