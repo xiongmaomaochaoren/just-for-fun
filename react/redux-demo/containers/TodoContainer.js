@@ -69,7 +69,7 @@ function seletePropsFromState(state){
     return {
         todos : seleteShowTodos(state.todos, state.showFilter),
         showFilter : state.showFilter
-        //calValue : state.calValue ： 增加该属性之后：计算器修改会导致该container重新render
+        // calValue : state.calValue  增加该属性之后：计算器修改会导致该container重新render
     }
 }
 

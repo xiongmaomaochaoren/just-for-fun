@@ -2,23 +2,15 @@
 import React, {Component} from "react";
 
 /**
- *  <Calculator base="2" initValue="10"/>
+ *  <Calculator base="2"/>
  */
 
 class Calculator extends Component{
 
-    _handleAddBtnClick(){
+    _handleBtnClick(type, e){
         let calInfo = {
-            type : "ADD",
-            value : this.props.base
-        }
-        this.props.onCalBtnClick(calInfo);
-    }
-
-    _handleMinBtnClick(){
-        let calInfo = {
-            type : "MIN",
-            value : this.props.base
+            value : this.props.base,
+            type
         }
         this.props.onCalBtnClick(calInfo);
     }
@@ -30,8 +22,8 @@ class Calculator extends Component{
                     <span className="cal-value">{this.props.calValue}</span>
                 </div>
                 <div className="cal-control">
-                    <button onClick={ (e) => this._handleAddBtnClick() }>累加</button>
-                    <button onClick={ (e) => this._handleMinBtnClick() }>递减</button>
+                    <button onClick={ (e) => this._handleBtnClick("ADD", e) }>累加</button>
+                    <button onClick={ (e) => this._handleBtnClick("MIN", e) }>递减</button>
                 </div>
             </div>
         )
