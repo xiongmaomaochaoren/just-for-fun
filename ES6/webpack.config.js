@@ -2,7 +2,7 @@ var webpack = require("webpack");
 
 var config = {
     entry : {
-        es6 : ["./es6.js"]
+        es6 : ["babel-polyfill", "./es6.js"] //babel-polyfill 增加generator支持
     },
     output : {
         path : __dirname,

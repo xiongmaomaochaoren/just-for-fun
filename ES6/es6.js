@@ -1,15 +1,14 @@
+/*******PromiseDemo*******/
+import promiseDemo from "./demo/promiseDemo";
 
-import {timeout, getJSON} from "./demo/promiseDemo";
+promiseDemo.start();
 
-timeout(1000).then( (value) => {
-    console.log(value);
-});
+/*******ThunkDemo*******/
+import thunkDemo from "./demo/thunkDemo";
 
-let ajaxUrl = "http://localhost:8887/";
-getJSON("http://localhost:8887/")
-    .then(function(response){
-        console.log(response);
-    })
-    .catch(function(error){
-        console.log(error);
-    });
+thunkDemo.start();
+
+/*******GeneratorDemo*******/
+import generatorDemo from "./demo/generatorDemo";
+
+generatorDemo.start();

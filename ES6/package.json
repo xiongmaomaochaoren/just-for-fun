@@ -15,12 +15,11 @@
     "url": "https://github.com/wangcheng714/just-for-fun/issues"
   },
   "homepage": "https://github.com/wangcheng714/just-for-fun",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.1.19",
     "babel-loader": "^6.1.0",
+    "babel-polyfill": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
     "css-loader": "^0.22.0",
