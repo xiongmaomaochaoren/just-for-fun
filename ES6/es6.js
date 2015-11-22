@@ -12,3 +12,9 @@ thunkDemo.start();
 import generatorDemo from "./demo/generatorDemo";
 
 generatorDemo.start();
+
+/*******thunkGeneratorDemo*******/
+import thunkGeneratorDemo from "./demo/thunkGeneratorDemo";
+
+thunkGeneratorDemo.startManualDemo();
+thunkGeneratorDemo.startAutoDemo();
