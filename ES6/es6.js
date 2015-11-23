@@ -26,4 +26,9 @@ import thunkGeneratorDemo from "./demo/thunkGeneratorDemo";
 import promiseGeneratorDemo from "./demo/promiseGeneratorDemo";
 
 // promiseGeneratorDemo.startManualDemo(10, 5);
-promiseGeneratorDemo.startAutoDemo(10, 20);
+// promiseGeneratorDemo.startAutoDemo(10, 20);
+
+/*******asyncDemo*******/
+import asyncDemo from "./demo/asyncDemo";
+
+asyncDemo.startAsyncDemo();
