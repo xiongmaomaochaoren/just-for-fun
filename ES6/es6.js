@@ -29,6 +29,6 @@ import promiseGeneratorDemo from "./demo/promiseGeneratorDemo";
 // promiseGeneratorDemo.startAutoDemo(10, 20);
 
 /*******asyncDemo*******/
-import asyncDemo from "./demo/asyncDemo";
+//import asyncDemo from "./demo/asyncDemo";
 
-asyncDemo.startAsyncDemo();
+//asyncDemo.startAsyncDemo();
