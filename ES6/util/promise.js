@@ -1,3 +1,4 @@
+import { asyncAdd,asyncMulty } from "../util/asyncFn";
 
 export function timeout(ms){
     return new Promise( (resolve, reject) => {
@@ -20,5 +21,21 @@ export function getJSON(url){
             }
         };
         xhr.send();
+    });
+}
+
+export function promiseAdd(num1, num2){
+    return new Promise( (resolve, reject) => {
+        asyncAdd(num1, num2, function(error, result){
+            resolve(result);
+        })
+    });
+}
+
+export function promiseMulty(num1, num2){
+    return new Promise( (resolve, reject) => {
+        asyncMulty(num1, num2, function(error, result){
+            resolve(result);
+        });
     });
 }

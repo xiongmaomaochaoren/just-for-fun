@@ -1,9 +1,13 @@
 import { asyncAdd,asyncMulty } from "../util/asyncFn";
 import { thunkfy }  from "../util/thunk";
-import { runGenerator } from "../util/coGenerator";
+import { runThunkGenerator } from "../util/coGenerator";
 
 let thunkSyncAdd = thunkfy(asyncAdd);
 let thunkSyncMulty = thunkfy(asyncMulty);
+
+/**
+ * 自动执行generator函数的原理 ： 当异步操作有结果之后，能够自动将控制权交回generator函数执行
+ */
 
 function startManualDemo(){
     function *manualGenerator(num1, num2){
@@ -24,7 +28,7 @@ function startManualDemo(){
 }
 
 function startAutoDemo(){
-    runGenerator(function *(num1 = 5, num2 = 6){
+    runThunkGenerator(function *(num1 = 5, num2 = 6){
         let addResult = yield thunkSyncAdd(num1, num2);
         let multyResult = yield thunkSyncMulty(num1, num2);
         let resultStr = `Add Result ${addResult}, Multy Result ${multyResult}. Report From StartAutoDemo Fn`;
