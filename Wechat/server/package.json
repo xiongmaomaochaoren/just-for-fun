@@ -1,0 +1,13 @@
+{
+  "name": "RRD-NODE-SERVER",
+  "version": "1.0.0",
+  "description": "RRD Node Backend Service",
+  "scripts": {
+    "start": "webpack-dev-server --progress"
+  },
+  "author": "wangcheng714",
+  "dependencies": {
+    "co": "^4.6.0",
+    "jssha": "1.6.0"
+  }
+}
