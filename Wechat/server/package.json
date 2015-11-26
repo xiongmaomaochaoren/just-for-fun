@@ -1,5 +1,5 @@
 {
-  "name": "RRD-NODE-SERVER",
+  "name": "RRD-NODE-BACKEND",
   "version": "1.0.0",
   "description": "RRD Node Backend Service",
   "scripts": {
@@ -7,7 +7,9 @@
   },
   "author": "wangcheng714",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "co": "^4.6.0",
+    "express": "^4.13.3",
     "jssha": "1.6.0"
   }
 }

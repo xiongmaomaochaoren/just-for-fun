@@ -1,9 +1,14 @@
+/**
+ * @author wangcheng
+ * @data   2015-11-24
+ * @desc   微信JS-SDK封装
+ */
 
 'use strict';
 
 var co = require("co");
 var jsSHA = require("jssha");
-var HttpUtil = require("./lib/HttpUtil.js");
+var HttpUtil = require("../lib/HttpUtil.js");
 
 
 
@@ -70,8 +75,43 @@ function getSignaturePackage(url, cb){
                 timestamp : timestamp,
                 nonceStr : nonceStr,
                 signature : signature,
+                jsApiTicket : jsApiTicketObj.ticket,
+                url : url,
                 jsApiList : [
-
+                    'checkJSApi',
+            		'onMenuShareTimeline',
+            		'onMenuShareQQ',
+            		'onMenuShareAppMessage',
+            		'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems',
+                    'hideAllNonBaseMenuItem',
+                    'showAllNonBaseMenuItem',
+                    'translateVoice',
+                    'startRecord',
+                    'stopRecord',
+                    'onRecordEnd',
+                    'playVoice',
+                    'pauseVoice',
+                    'stopVoice',
+                    'uploadVoice',
+                    'downloadVoice',
+                    'chooseImage',
+                    'previewImage',
+                    'uploadImage',
+                    'downloadImage',
+                    'getNetworkType',
+                    'openLocation',
+                    'getLocation',
+                    'hideOptionMenu',
+                    'showOptionMenu',
+                    'closeWindow',
+                    'scanQRCode',
+                    'chooseWXPay',
+                    'openProductSpecificView',
+                    'addCard',
+                    'chooseCard',
+                    'openCard'
                 ]
             };
             cb(signaturePackage);
@@ -82,9 +122,6 @@ function getSignaturePackage(url, cb){
 
 }
 
-let url = "http://www.we.com";
-getSignaturePackage(url, (signaturePackage) => {
-    console.log(signaturePackage);
-});
-
-module.export = { getSignaturePackage }
+module.exports = {
+    getSignaturePackage
+}
