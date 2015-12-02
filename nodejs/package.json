@@ -1,0 +1,9 @@
+{
+  "name": "Node-example",
+  "version": "1.0.0",
+  "description": "A Collection of Node example",
+  "author": "wangcheng714",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

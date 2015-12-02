@@ -10,7 +10,9 @@ var co = require("co");
 var jsSHA = require("jssha");
 var HttpUtil = require("../lib/HttpUtil.js");
 
-
+//使用MAP
+const APPID = "wx528f6e9d4ed5a954";
+const APPSECRET = "bd5e0ec192d523237160e6db10d0af5b";
 
 function getAccessToken(){
     let accessUrl = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APPID}&secret=${APPSECRET}`;
@@ -19,6 +21,7 @@ function getAccessToken(){
     return accessTokenPromise;
 }
 
+//参数解构
 function getJsApiTicket(accessToken) {
     let ticketUrl = `https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=${accessToken}&type=jsapi`;
     let httpType = "https";

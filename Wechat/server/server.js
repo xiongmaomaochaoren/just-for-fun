@@ -16,9 +16,9 @@ app.get("/node/wx_signature", function(req, res){
     let referrerUrl = req.query.referrerUrl;
     WXSdk.getSignaturePackage(referrerUrl, (signaturePackage) => {
         res.set({
-			"Access-Control-Allow-Origin": "*"
-			,"Access-Control-Allow-Methods": "POST,GET"
-			,"Access-Control-Allow-Credentials": "true"
+			"Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST,GET",
+            "Access-Control-Allow-Credentials": "true"
 		});
         console.log(signaturePackage);
 		res.json(signaturePackage);
