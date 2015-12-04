@@ -1,3 +1,5 @@
 {
-    "status" : 0
+    "status" : 0,
+    "msg" : "U计划加入成功！",
+    "url" : "/financeplan/listPlan!detailPlan.action?financePlanId=472"
 }
