@@ -30,5 +30,9 @@ import promiseGeneratorDemo from "./demo/promiseGeneratorDemo";
 
 /*******asyncDemo*******/
 //import asyncDemo from "./demo/asyncDemo";
-
 //asyncDemo.startAsyncDemo();
+
+/*******proxyDemo*******/
+// import proxyDemo from "./demo/proxyDemo";
+
+// proxyDemo.start();
