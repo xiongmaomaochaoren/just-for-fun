@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "description": "RRD Node Backend Service",
   "scripts": {
-    "start": "webpack-dev-server --progress"
+    "start": ""
   },
   "author": "wangcheng714",
   "dependencies": {
     "body-parser": "^1.14.1",
     "co": "^4.6.0",
     "express": "^4.13.3",
-    "jssha": "1.6.0"
+    "jssha": "1.6.0",
+    "request-promise": "^1.0.2"
   }
 }

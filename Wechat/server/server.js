@@ -1,28 +1,22 @@
+/**
+ * @author wangcheng
+ * @data   2015-11-24
+ * @desc   Server入口类
+ */
+
 'use strict';
 
-var url = require("url");
 
-var express = require("express");
-var app = express();
-var bodyParser = require('body-parser');
+let express = require("express");
+let bodyParser = require('body-parser');
+let wxRouter = require("./routers/wechat");
 
-var WXSdk = require("./action/wxsdk.js");
-
+const app = express();
+const urlPrefix = "/node";
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-app.get("/node/wx_signature", function(req, res){
-    let referrerUrl = req.query.referrerUrl;
-    WXSdk.getSignaturePackage(referrerUrl, (signaturePackage) => {
-        res.set({
-			"Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "POST,GET",
-            "Access-Control-Allow-Credentials": "true"
-		});
-        console.log(signaturePackage);
-		res.json(signaturePackage);
-    });
-});
+app.use(express.static("public"));
+app.use(urlPrefix + '/', wxRouter);
 
 app.listen(8080);
