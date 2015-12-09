@@ -3,10 +3,9 @@
 
 ### 开发
 
-* Express插件配置
+* 考虑
 
-    router、static、cookie、body parser等
-    express 其他插件
+    数据获取(数据库、ajax请求)应该是在model层还是actions层封装
 
 * PM2 引入
 
@@ -19,8 +18,13 @@
 
 * 后续(二期)
 
-    node passport
-    node ral
+    Node模块 ：
+        node passport
+        node ral
+        node log
+    MVC框架 ：
+        合适的MVC框架
+
 
 ### 提测
 
