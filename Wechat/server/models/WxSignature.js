@@ -9,7 +9,7 @@
 let jsSHA = require("jssha");
 let WeChatConstant = require("../constants/WeChat");
 
-class WxSignatureModal{
+class WxSignatureModel{
     /**
      * [constructor description]
      * @param  {[type]} appId       [description]
@@ -68,4 +68,4 @@ class WxSignatureModal{
 
 }
 
-module.exports = WxSignatureModal;
+module.exports = WxSignatureModel;

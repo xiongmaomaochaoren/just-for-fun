@@ -18,6 +18,8 @@
 
 * 后续(二期)
 
+    开发 ：
+        开发模式、线上模式
     Node模块 ：
         node passport
         node ral

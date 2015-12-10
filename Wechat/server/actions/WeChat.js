@@ -9,7 +9,7 @@
 let co = require("co");
 let requestPromise = require("request-promise");
 
-let WxSignature = require("../modals/WxSignature");
+let WxSignature = require("../models/WxSignature");
 let WeChatConstant = require("../constants/WeChat");
 
 class WeChatAction {
