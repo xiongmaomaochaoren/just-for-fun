@@ -21,4 +21,4 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(express.static("public"));
 app.use(urlPrefix + '/wx', wxRouter);
 
-app.listen(8080);
+app.listen(3000);

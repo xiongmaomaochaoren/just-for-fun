@@ -4,7 +4,7 @@ import Ajax from "./util/ajax";
 function getSignaturePackage(){
     //生成signaturePackage的url ： 包括query，不包括#后面锚点
     let referrerUrl = location.href.split('#')[0];
-    let url = `http://m.we.com:8080/node/wx_signature?referrerUrl=${referrerUrl}`;
+    let url = `http://m.we.com:3000/node/wx/signature?referrerUrl=${referrerUrl}`;
     let signaturePackagePromise = Ajax.getJSON(url);
     signaturePackagePromise
         .then( (signaturePackage) => {
