@@ -9,8 +9,8 @@
 let co = require("co");
 let requestPromise = require("request-promise");
 
-let WxSignature = require("../models/WxSignature");
-let WeChatConstant = require("../constants/WeChat");
+let WxSignature = require("../models/wxsignature");
+let WeChatConstant = require("../constants/wechat");
 
 class WeChatAction {
 
@@ -59,4 +59,4 @@ class WeChatAction {
     }
 }
 
-module.exports = WeChatAction；
+module.exports = WeChatAction

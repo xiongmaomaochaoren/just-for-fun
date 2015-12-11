@@ -7,7 +7,7 @@
 'use strict';
 
 let express = require("express");
-let WechatAction = require("../actions/WeChat");
+let WechatAction = require("../actions/wechat");
 
 const wxRouter = express.Router();
 

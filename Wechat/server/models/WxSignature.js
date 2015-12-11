@@ -6,8 +6,9 @@
 
 'use strict';
 
+//TODO ： 添加siginature的缓存
 let jsSHA = require("jssha");
-let WeChatConstant = require("../constants/WeChat");
+let WeChatConstant = require("../constants/wechat");
 
 class WxSignatureModel{
     /**
@@ -22,9 +23,9 @@ class WxSignatureModel{
         this.appId = appId;
         this.jsApiTicket = jsApiTicket;
         this.jsApiList = WeChatConstant.JS_API_LIST;
-        this.nonceStr = WxSignature._getNonceStr();
-        this.timestamp = WxSignature._getTimeStamp();
-        this.signature = WxSignature._getSignature(this.jsApiTicket, this.nonceStr, this.timestamp, this.url);
+        this.nonceStr = WxSignatureModel._getNonceStr();
+        this.timestamp = WxSignatureModel._getTimeStamp();
+        this.signature = WxSignatureModel._getSignature(this.jsApiTicket, this.nonceStr, this.timestamp, this.url);
     }
     /**
      * 获取随机字符串
