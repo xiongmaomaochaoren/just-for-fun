@@ -6,11 +6,12 @@
 
 'use strict';
 
+let rrdPath = rrd.path;
+
 let co = require("co");
 let requestPromise = require("request-promise");
-
-let WxSignature = require("../models/wxsignature");
-let WeChatConstant = require("../constants/wechat");
+let WxSignature = require(rrdPath.MODEL_DIR +  "/wxsignature");
+let WeChatConstant = require(rrdPath.CONSTANTS_DIR + "/wechat");
 
 class WeChatAction {
 

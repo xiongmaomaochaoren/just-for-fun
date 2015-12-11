@@ -6,9 +6,10 @@
 
 'use strict';
 
+let rrdPath = rrd.path;
 //TODO ： 添加siginature的缓存
 let jsSHA = require("jssha");
-let WeChatConstant = require("../constants/wechat");
+let WeChatConstant = require(rrdPath.CONSTANTS_DIR + "/wechat");
 
 class WxSignatureModel{
     /**

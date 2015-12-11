@@ -6,10 +6,12 @@
 
 'use strict';
 
+require("./lib/rrd.js");
 
+let rrdPath = rrd.path;
 let express = require("express");
 let bodyParser = require('body-parser');
-let wxRouter = require("./routers/wechat");
+let wxRouter = require(rrdPath.ROUTER_DIR + "/wechat");
 
 const app = express();
 const urlPrefix = "/node";

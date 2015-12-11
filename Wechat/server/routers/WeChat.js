@@ -6,8 +6,13 @@
 
 'use strict';
 
+
+
+
+let rrdPath = rrd.path;
+
 let express = require("express");
-let WechatAction = require("../actions/wechat");
+let WechatAction = require(rrdPath.ACTION_DIR + "/wechat");
 
 const wxRouter = express.Router();
 
