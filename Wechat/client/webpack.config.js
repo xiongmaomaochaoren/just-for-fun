@@ -24,7 +24,7 @@ var config = {
                 test: /\.less/,
                 loader: 'style-loader!css-loader!less-loader'
             },
-            //base64\图片加载  ： https://github.com/webpack/url-loader
+            //base64图片加载  ： https://github.com/webpack/url-loader
             {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader',
