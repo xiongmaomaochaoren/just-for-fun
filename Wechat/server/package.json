@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "RRD Node Backend Service",
   "scripts": {
-    "start": ""
+    "start": "",
+    "debug" : "NODE_ENV=debug && node server.js",
+    "online" : "NODE_ENV=production && node server.js"
   },
   "author": "RRD FE TEAM",
   "dependencies": {
     "body-parser": "^1.14.1",
+    "bunyan": "^1.5.1",
     "co": "^4.6.0",
+    "continuation-local-storage": "^3.1.4",
     "express": "^4.13.3",
     "jssha": "1.6.0",
     "request-promise": "^1.0.2"

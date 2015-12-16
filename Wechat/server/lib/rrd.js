@@ -8,6 +8,8 @@
 
 //const RRDPath = require("./path.js");
 const rpath = require('../constants/path.js');
+const config = require('../config');
+const rrdUtils = require('./rrd-utils.js');
 
 class RRD{
 
@@ -25,4 +27,16 @@ Object.defineProperty(rrd, 'path', {
     value: rpath
 });
 
-module.expoorts = global.rrd;
+Object.defineProperty(rrd, 'config', {
+    enumerable: true,
+    writable: false,
+    value: config
+});
+
+Object.defineProperty(rrd, 'utils', {
+    enumerable: false,
+    writable: false,
+    value: rrdUtils
+});
+
+module.exports = global.rrd;
