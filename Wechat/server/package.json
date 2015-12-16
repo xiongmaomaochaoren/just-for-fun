@@ -4,8 +4,8 @@
   "description": "RRD Node Backend Service",
   "scripts": {
     "start": "",
-    "debug" : "NODE_ENV=debug && node server.js",
-    "online" : "NODE_ENV=production && node server.js"
+    "debug" : "NODE_ENV=debug  node server.js",
+    "online" : "NODE_ENV=production  node server.js"
   },
   "author": "RRD FE TEAM",
   "dependencies": {
