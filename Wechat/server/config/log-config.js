@@ -6,9 +6,23 @@
 'use strict';
 
 var path = require('path');
+var fs = require('fs');
 
-const LOG_BASE_PATH = '../log/';
+const LOG_BASE_PATH = path.dirname(__dirname) + path.sep + 'log' + path.sep;
 const errorLogFile = LOG_BASE_PATH + 'error.log';
+
+let pathArray = [ errorLogFile ];
+
+//判断日志文件是否存在,不存在则创建
+pathArray.forEach(function( path ){
+    try{
+        fs.accessSync( path, fs.R_OK | fs.W_OK );
+    }catch(e){
+        //console.log('create log file:' + path );
+        let fd = fs.openSync( path, 'w');
+        fs.closeSync(fd);
+    }
+});
 
 const NAME = 'wenode';
 
