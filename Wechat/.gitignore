@@ -1,5 +1,4 @@
 /server/public
 /server/views
-<<<<<<< HEAD
-.idea/
 /.idea
+/node_modules
