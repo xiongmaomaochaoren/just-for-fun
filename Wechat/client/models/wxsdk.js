@@ -1,4 +1,6 @@
- import WXShareDataConfig from "./wxShareDataConfig";
+
+import WXShareDataConfig from "./wxShareDataConfig";
+
 
 /**
     微信分享类

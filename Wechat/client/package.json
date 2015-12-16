@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --port 80 --progress"
   },
-  "author": "wangcheng714",
+  "author": "RRD FE TEAM",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {

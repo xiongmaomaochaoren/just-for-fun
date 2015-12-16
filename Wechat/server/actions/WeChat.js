@@ -6,11 +6,12 @@
 
 'use strict';
 
+let rrdPath = rrd.path;
+
 let co = require("co");
 let requestPromise = require("request-promise");
-
-let WxSignature = require("../models/WxSignature");
-let WeChatConstant = require("../constants/WeChat");
+let WxSignature = require(rrdPath.MODEL_DIR +  "/wxsignature");
+let WeChatConstant = require(rrdPath.CONSTANTS_DIR + "/wechat");
 
 class WeChatAction {
 
@@ -59,4 +60,4 @@ class WeChatAction {
     }
 }
 
-module.exports = WeChatAction；
+module.exports = WeChatAction

@@ -1,2 +1,5 @@
 /server/public
 /server/views
+.idea/
+/.idea
+log

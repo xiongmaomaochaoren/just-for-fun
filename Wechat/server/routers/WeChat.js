@@ -6,8 +6,13 @@
 
 'use strict';
 
+
+
+
+let rrdPath = rrd.path;
+
 let express = require("express");
-let WechatAction = require("../actions/WeChat");
+let WechatAction = require(rrdPath.ACTION_DIR + "/wechat");
 
 const wxRouter = express.Router();
 
@@ -19,7 +24,9 @@ wxRouter.get("/signature", function(req, res){
             "Access-Control-Allow-Methods": "POST,GET",
             "Access-Control-Allow-Credentials": "true"
 		});
-        console.log(signaturePackage);
+        //console.log(signaturePackage);
+        res.weLog.warn( {'signaturePackage' : signaturePackage });
+        res.weLog.error('测试错误error输出');
 		res.json(signaturePackage);
     });
 });

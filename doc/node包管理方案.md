@@ -141,3 +141,11 @@ pac
 node_module-in-git
 
     http://www.futurealoof.com/posts/nodemodules-in-git.html
+
+    https://www.quora.com/Should-I-put-node_modules-in-gitignore
+
+    http://stackoverflow.com/questions/13318364/how-to-deploy-node-js-application-with-deep-node-modules-structure-on-windows
+
+参考方案 ：
+
+    https://medium.com/@bestander_nz/my-node-modules-are-in-git-again-4fb18f5671a#.d6gjtcasz
