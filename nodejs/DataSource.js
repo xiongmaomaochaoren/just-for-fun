@@ -17,6 +17,7 @@ app.get("/result", function(req, res){
         "Access-Control-Allow-Credentials": "true"
     });
     res.json(contentJson);
+	res.send(req.baseUrl);
 });
 
-app.listen("8089");
+app.listen("8090");

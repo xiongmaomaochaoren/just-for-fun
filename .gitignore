@@ -10,4 +10,5 @@ doc/resume.md
 *.cmd
 ~*
 
+.project
 upload.py

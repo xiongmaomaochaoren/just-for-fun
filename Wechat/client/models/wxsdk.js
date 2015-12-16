@@ -1,4 +1,6 @@
- import WXShareDataConfig from "./wxShareDataConfig.js";
+
+import WXShareDataConfig from "./wxShareDataConfig";
+
 
 /**
     微信分享类

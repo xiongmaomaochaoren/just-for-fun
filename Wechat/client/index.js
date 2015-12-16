@@ -1,3 +1,4 @@
+
 import WXSdk from "./models/wxsdk.js";
 //微信获取签名访问地址prefix
 const prefixUrl = 'http://m.we.com:8080/node/wx/signature?referrerUrl';
@@ -17,3 +18,4 @@ WXSdk.getWXSdkPromise(url)
     .then((signaturePackage) =>{
         WXSdk.share(signaturePackage,wxShareData);
     });
+
