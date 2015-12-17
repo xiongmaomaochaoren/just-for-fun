@@ -1,5 +1,6 @@
 /server/public
 /server/views
-.idea/
 /.idea
-log
+/node_modules
+.idea/
+/server/log
