@@ -7,6 +7,7 @@
 
 var path = require('path');
 var fs = require('fs');
+var fse = require('fs-extra');
 var bunyan = require('bunyan');
 
 const LOG_BASE_PATH = path.dirname(__dirname) + path.sep + 'log' + path.sep;
@@ -18,13 +19,14 @@ let pathArray = [ warnLogFile, errorLogFile, fatalLogFile ];
 
 //判断日志文件是否存在,不存在则创建
 pathArray.forEach(function( path ){
-    try{
-        fs.accessSync( path, fs.R_OK | fs.W_OK );
-    }catch(e){
-        //console.log('create log file:' + path );
-        let fd = fs.openSync( path, 'w');
-        fs.closeSync(fd);
-    }
+    fse.ensureFileSync( path );
+    //try{
+    //    fs.accessSync( path, fs.R_OK | fs.W_OK );
+    //}catch(e){
+    //    //console.log('create log file:' + path );
+    //    let fd = fs.openSync( path, 'w');
+    //    fs.closeSync(fd);
+    //}
 });
 
 const NAME = 'wenode';
