@@ -7,11 +7,14 @@
 
 var path = require('path');
 var fs = require('fs');
+var bunyan = require('bunyan');
 
 const LOG_BASE_PATH = path.dirname(__dirname) + path.sep + 'log' + path.sep;
 const errorLogFile = LOG_BASE_PATH + 'error.log';
+const fatalLogFile = LOG_BASE_PATH + 'fatal.log';
+const warnLogFile = LOG_BASE_PATH + 'warn.log';
 
-let pathArray = [ errorLogFile ];
+let pathArray = [ warnLogFile, errorLogFile, fatalLogFile ];
 
 //判断日志文件是否存在,不存在则创建
 pathArray.forEach(function( path ){
@@ -35,17 +38,27 @@ let logConfig = {
                 level : 'trace',
                 stream : process.stdout
             }
-        ]
+        ],
+        serializers : bunyan.stdSerializers
     },
     //线上配置
     prod : {
         name : NAME,
         streams : [
+            //{
+            //    level : 'warn',
+            //    path : warnLogFile
+            //},
+            //{
+            //    level : 'error',
+            //    path : errorLogFile
+            //},
             {
-                level : 'error',
-                path : errorLogFile
+                level : 'fatal',
+                path : fatalLogFile
             }
-        ]
+        ],
+        serializers : bunyan.stdSerializers
     }
 };
 

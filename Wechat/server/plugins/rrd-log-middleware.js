@@ -8,6 +8,7 @@
 let bunyan = require('bunyan');
 
 let log = null;
+let weLog = null;
 
 class WeLog{
 
@@ -55,6 +56,8 @@ let singleton = {
         
         log = bunyan.createLogger( conf );
 
+        weLog = new WeLog();
+
 
         return function logMiddleware(req, res, next ){
 
@@ -65,6 +68,10 @@ let singleton = {
             next();
         };
 
+    },
+
+    getLog : function(){
+        return weLog;
     }
 };
 

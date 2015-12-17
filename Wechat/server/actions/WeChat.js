@@ -52,10 +52,11 @@ class WeChatAction {
                 let jsApiTicket = jsApiTicketObj.ticket;
                 let wxSignature = new WxSignature(WeChatConstant.APPID, jsApiTicket, url);
                 let signaturePackage = wxSignature.getSignatureInfo();
-                cb(signaturePackage);
+                cb(null, signaturePackage);
             })
             .catch( (error) => {
-                console.log('发生错误！', error, error.stack);
+                //console.log('发生错误！', error, error.stack);
+                cb( error );
             });
     }
 }
