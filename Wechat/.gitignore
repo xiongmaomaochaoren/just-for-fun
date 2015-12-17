@@ -1,6 +1,10 @@
+/.idea
+.idea/
+
+/build
+/prebuild
+/node_modules
+
 /server/public
 /server/views
-/.idea
-/node_modules
-.idea/
 /server/log

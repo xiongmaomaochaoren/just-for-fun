@@ -18,11 +18,13 @@
   "dependencies": {
     "express": "^4.13.3",
     "isomorphic-fetch": "^2.2.0",
+
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.0",
+
     "sleep": "^3.0.0"
   },
   "devDependencies": {

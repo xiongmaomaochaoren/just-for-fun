@@ -1,20 +1,25 @@
 /**
  * webpack配置文件
- * Created by wangcheng on 15/11/10.
+ * Created by wangcheng on 15/12/10.
+ */
+
+/**
+ * Todo : 多文件多入口支持
+ * Todo : common组件抽取
  */
 
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config  = {
     entry: {
-        "fund-party-20151116" : './src/js/fund-party-20151116.js',
-        vendors: [ 'console-polyfill', 'object-assign', 'es5-shim/es5-shim', 'es5-shim/es5-sham', './src/utils/mobileRem' ],
-        common : './src/css/common.less'
+        "redux-todo" : './client/page/redux-todo/redux-todo.js'
+        //vendors: [ 'console-polyfill', 'object-assign', 'es5-shim/es5-shim', 'es5-shim/es5-sham', './src/utils/mobileRem' ],
+        //common : './src/css/common.less'
     },
     output: {
         path: __dirname + '/prebuild',
-        publicPath: '', //'http://127.0.0.1:9000/build',
-        filename: 'js/[name].bundle.js'
+        publicPath: '',
+        filename: 'public/js/[name].bundle.js'
     },
     module: {
         loaders: [
@@ -39,7 +44,7 @@ var config  = {
                 loader: 'url?limit=100000'
             },
             {
-                test: /\.(png|jpg)$/,
+                test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader?limit=20460'
             }
         ]
@@ -48,17 +53,12 @@ var config  = {
         extensions: ['', '.js', '.jsx', '.woff', '.png', '.jpg', '.less', '.css']
     },
     plugins: [
-        // new webpack.HotModuleReplacementPlugin(),
-        // new webpack.optimize.CommonsChunkPlugin('vendors', 'js/vendors.js'),
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin("css/[name].bundle.css", {
+        new ExtractTextPlugin("public/css/[name].bundle.css", {
             allChunks: true,
             publicPath : "/css/"
         })
-    ],
-    stats: {
-
-    }
+    ]
 };
 
 module.exports = config;

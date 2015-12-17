@@ -17,6 +17,7 @@ const CONFIG_DIR = BASE_DIR + DS + 'config';
 const MODEL_DIR = BASE_DIR + DS + 'models';
 const ROUTER_DIR = BASE_DIR + DS + 'routers';
 const CONSTANTS_DIR = BASE_DIR + DS + 'constants';
+const TEST_DIR = BASE_DIR + DS + 'test';
 
 module.exports = {
     BASE_DIR,
@@ -25,5 +26,6 @@ module.exports = {
     CONFIG_DIR,
     MODEL_DIR,
     ROUTER_DIR,
-    CONSTANTS_DIR
+    CONSTANTS_DIR,
+    TEST_DIR
 }

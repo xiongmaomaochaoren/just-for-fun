@@ -4,12 +4,17 @@
  */
 
 /**
+ * Todo : 多文件多入口支持
+ * Todo : 图片的产出测试
+ */
+
+/**
  * Todo : 内部task私有化
  * Todo : 依赖关系简化
  * Todo : help 补充添加
  * Todo : product 和 dev 两种模式支持
- * Todo : 多文件多入口支持
  * Todo : 静态资源Url变换
+ * Todo : 重构拆分gulpfile.js 和 webpack.config.js
  */
 
 var gulp = require('gulp'),

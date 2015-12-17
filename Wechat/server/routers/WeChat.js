@@ -6,9 +6,6 @@
 
 'use strict';
 
-
-
-
 let rrdPath = rrd.path;
 
 let express = require("express");

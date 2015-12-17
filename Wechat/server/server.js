@@ -7,6 +7,7 @@
 'use strict';
 
 require("./lib/rrd.js");
+
 var cluster = require('cluster');
 
 let rrdPath = rrd.path;
@@ -26,17 +27,13 @@ if( rrd.utils.isProduction() ){
     finalLogConf = logConfig.dev;
 }
 
+//Todo : http参数配置
+app.use('/static', express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/views'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(express.static("public"));
 app.use( logMiddleware.configLog(finalLogConf) );
 
-//测试代码
-app.use( function logTest(req, res, next){
-    //res.weLog.warn('测试warn类型的日志');
-    //res.weLog.fatal( { req : req }, 'FATAL:测试日志');
-    next();
-});
 
 app.use(urlPrefix + '/wx', wxRouter);
 
@@ -46,20 +43,12 @@ app.use(urlPrefix + '/error_handle', function triggerErrorMid(req, res, next){
     }, 100 );
 });
 
-app.use( urlPrefix + '/delay', function(req, res, next){
-    setTimeout( function(){
-        res.send('after 120s end');
-    }, 120000 );
-} );
-
-app.use( urlPrefix + '/instant', function(req, res, next){
-    res.send('立即返回');
-} );
-
 app.use(function(err, req, res, next){
     res.weLog.fatal({err : err}, err.message);
     res.end('出错啦');
 });
+
+
 
 process.on('uncaughtException', function uncaughtException(err){
     logMiddleware.getLog().fatal( err );
