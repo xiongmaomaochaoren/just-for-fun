@@ -1,47 +1,63 @@
+/**
+ * webpack配置文件
+ * Created by wangcheng on 15/12/10.
+ */
 
-var webpack = require("webpack");
+/**
+ * Todo : 多文件多入口支持
+ * Todo : common组件抽取
+ */
+
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-
-var config = {
-    entry : {
-        reduxDemo : ["./reduxDemo.js"]
+var config  = {
+    entry: {
+        "redux-todo" : './client/page/redux-todo/redux-todo.js'
+        //vendors: [ 'console-polyfill', 'object-assign', 'es5-shim/es5-shim', 'es5-shim/es5-sham', './src/utils/mobileRem' ],
+        //common : './src/css/common.less'
     },
-    output : {
-        path : __dirname,
-        filename : "static/pkg/js/[name].js"
+    output: {
+        path: __dirname + '/prebuild',
+        publicPath: '', //'http://127.0.0.1:9000/build'
+        filename: 'public/js/[name].bundle.js'
     },
-    module : {
-        loaders : [
-            //增加es6支持
+    module: {
+        loaders: [
             {
-                test : /\.js[x]?$/,
-                loader : "babel-loader",
-                exclude : /node_modules/,
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loader : 'babel',
                 query : {
                     presets: ['es2015','react']
                 }
             },
-            //增加less支持
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style', 'css')
+            },
             {
                 test: /\.less/,
-                loader: 'style-loader!css-loader!less-loader'
-                //loader: ExtractTextPlugin.extract('style', 'css!less')
+                loader: ExtractTextPlugin.extract('style', 'css!less')
             },
-            //base64\图片加载  ： https://github.com/webpack/url-loader
             {
-                test: /\.(png|jpg)$/,
-                loader: 'url-loader',
-                query: {
-                    limit : 1,
-                    name : "./static/[path][name].[ext]"
-                }
+                test: /\.woff$/,
+                loader: 'url?limit=100000'
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: 'url-loader?limit=20460'
             }
         ]
     },
-    plugins : [
-        // new ExtractTextPlugin("static/pkg/css/[name].css", {
-        //     allChunks: true
-        // })
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.woff', '.png', '.jpg', '.less', '.css']
+    },
+    plugins: [
+        new webpack.NoErrorsPlugin(),
+        new ExtractTextPlugin("public/css/[name].bundle.css", {
+            allChunks: true,
+            publicPath : "/css/"
+        })
     ]
 };
 

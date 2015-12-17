@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import AddTodo from "../components/AddTodo";
-import TodoList from "../components/TodoList";
-import TodoFooter from "../components/TodoFooter";
-import TodoHeader from "../components/TodoHeader/TodoHeader";
+import AddTodo from "../react-ui/AddTodo";
+import TodoList from "../react-ui/TodoList";
+import TodoFooter from "../react-ui/TodoFooter";
+import TodoHeader from "../react-ui/TodoHeader/TodoHeader";
 import * as actionCreates from "../actions/action";
 import { connect } from "react-redux";
 import * as FilterConstants from "../constants/TodoFilters";

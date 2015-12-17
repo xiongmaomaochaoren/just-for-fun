@@ -1,0 +1,5 @@
+/build
+/prebuild
+/node_modules
+/server/public
+/server/views

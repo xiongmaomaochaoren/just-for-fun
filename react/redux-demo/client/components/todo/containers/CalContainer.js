@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import * as actionCreates from "../actions/action";
-import Calculator from "../components/Calculator/Calculator";
+import Calculator from "../react-ui/Calculator/Calculator";
 
 class CalContainer extends Component{
 
