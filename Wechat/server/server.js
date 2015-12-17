@@ -15,6 +15,8 @@ let express = require("express");
 let bodyParser = require('body-parser');
 let logMiddleware = require('./plugins/rrd-log-middleware.js');
 let wxRouter = require(rrdPath.ROUTER_DIR + "/wechat");
+let todoRouter = require(rrdPath.ROUTER_DIR + '/todo');
+
 
 const app = express();
 const urlPrefix = "/node";
@@ -36,6 +38,7 @@ app.use( logMiddleware.configLog(finalLogConf) );
 
 
 app.use(urlPrefix + '/wx', wxRouter);
+app.use(urlPrefix + '/todo', todoRouter);
 
 app.use(urlPrefix + '/error_handle', function triggerErrorMid(req, res, next){
     setTimeout( function throwError(){

@@ -7,10 +7,14 @@
 let rrdPath = rrd.path;
 
 const express = require('express');
-const TodoAction = require(rrdPath.ACTION_DIR + '/todo');
-
 const todoRouter = express.Router();
 
-todoRouter.get('/list', function(res, req, next){
+const TodoAction = require(rrdPath.ACTION_DIR + '/todo');
+const todoAction = new TodoAction();
 
+
+todoRouter.get('/list', function(res, req, next){
+    todoAction.list(res, req, next);
 });
+
+module.exports = todoRouter;
