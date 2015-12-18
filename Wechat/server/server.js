@@ -14,8 +14,8 @@ let rrdPath = rrd.path;
 let express = require("express");
 let bodyParser = require('body-parser');
 let logMiddleware = require('./plugins/rrd-log-middleware.js');
-let wxRouter = require(rrdPath.ROUTER_DIR + "/wechat");
-let todoRouter = require(rrdPath.ROUTER_DIR + '/todo');
+var routerV1 = require('./routers/router-index.js');
+var errorHandle = require('./plugins/rrd-error-middleware.js');
 
 
 const app = express();
@@ -36,24 +36,12 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use( logMiddleware.configLog(finalLogConf) );
 
+app.use( urlPrefix, routerV1);
 
-app.use(urlPrefix + '/wx', wxRouter);
-app.use(urlPrefix + '/todo', todoRouter);
-
-app.use(urlPrefix + '/error_handle', function triggerErrorMid(req, res, next){
-    setTimeout( function throwError(){
-        throw new Error('async 主动throw错误,看看能捕获到么');
-    }, 100 );
-});
-
-app.use(function(err, req, res, next){
-    res.weLog.fatal({err : err}, err.message);
-    res.end('出错啦');
-});
-
-
+app.use( errorHandle() );
 
 process.on('uncaughtException', function uncaughtException(err){
+
     logMiddleware.getLog().fatal( err );
 
     var timer = setTimeout(function(){
