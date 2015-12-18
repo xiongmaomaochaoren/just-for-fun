@@ -8,6 +8,10 @@
  * Todo : common组件抽取
  */
 
+function getEntry(){
+    
+}
+
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config  = {

@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "人人贷WE理财 Node.js Project Code",
   "scripts": {
-    "debug" : "cd ./server && NODE_ENV=debug  node server.js",
-    "online" : "cd ./server && NODE_ENV=production  node server.js"
+    "debug": "cd ./server && NODE_ENV=debug  node server.js",
+    "online": "cd ./server && NODE_ENV=production  node server.js"
   },
   "author": "RRD FE",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "es5-shim": "^4.3.0",
     "express": "^4.13.3",
     "fs-extra": "^0.26.2",
+    "glob": "^6.0.1",
     "isomorphic-fetch": "^2.2.0",
     "jquery": "^2.1.4",
     "jssha": "1.6.0",

@@ -13,9 +13,7 @@
     React和前端模板关系
     React 后端渲染
 
-* 前端编译、构建和Node Server结合
-
-* Node Log模块开发
+* Node Server hot reload (action、server等修改后)
 
 * 后续
 
