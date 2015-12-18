@@ -4,28 +4,55 @@
  */
 
 /**
- * Todo : 多文件多入口支持
  * Todo : common组件抽取
  */
 
-function getEntry(){
-    
+'use strict';
+
+
+let path = require('path');
+let glob = require('glob');
+
+const BASE_DIR = __dirname;
+
+/**
+ * 获取client/page下所有的js入口文件
+ * 计算相对webpack.config.js的相对路径  (value)
+ * 获取js文件的basename (key)
+ * 利用key和value返回entry数组
+ */
+function getPageEntry(){
+    let ext = '.js';
+    //采用glob方案,而非正则,跨语言文件匹配的标准方案 : https://github.com/isaacs/node-glob
+    let entryPattern = BASE_DIR + '/client/page/**/*.js';
+    let entrys = {};
+    let entryFiles = glob.sync(entryPattern, {});
+    entryFiles.forEach(function(file, index){
+        let basename = path.basename(file, ext);
+        let relativePath = path.relative(BASE_DIR, file);
+        let fixRelativePath = './' + relativePath;
+        entrys[basename] = fixRelativePath;
+    });
+    return entrys;
+}
+
+function getCommonEntry(){
+
 }
 
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config  = {
-    entry: {
-        "redux-todo" : './client/page/redux-todo/redux-todo.js'
-        //vendors: [ 'console-polyfill', 'object-assign', 'es5-shim/es5-shim', 'es5-shim/es5-sham', './src/utils/mobileRem' ],
-        //common : './src/css/common.less'
-    },
+    entry: getPageEntry(),
+    //vendors: [ 'console-polyfill', 'object-assign', 'es5-shim/es5-shim', 'es5-shim/es5-sham', './src/utils/mobileRem' ],
+    //common : './src/css/common.less'
     output: {
-        path: __dirname + '/prebuild',
         publicPath: '',
-        filename: 'public/js/[name].bundle.js'
+        filename: 'js/[name].bundle.js'
+        //path: BASE_DIR + '/prebuild/public/', path 在gulp中定义
     },
     module: {
+        //webpack loader : http://webpack.github.io/docs/using-loaders.html
         loaders: [
             {
                 test: /\.(js|jsx)$/,
@@ -37,19 +64,30 @@ var config  = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style', 'css')
+                loader: ExtractTextPlugin.extract('style', 'css', {
+                    publicPath : '/static/'
+                })
             },
             {
                 test: /\.less/,
-                loader: ExtractTextPlugin.extract('style', 'css!less')
+                loader: ExtractTextPlugin.extract('style', 'css!less', {
+                    publicPath : '/static/'
+                })
             },
             {
                 test: /\.woff$/,
-                loader: 'url?limit=100000'
+                loader: 'url',
+                query : {
+                    limit : 512
+                }
             },
             {
                 test: /\.(png|jpg|gif)$/,
-                loader: 'url-loader?limit=20460'
+                loader: 'url',
+                query : {
+                    limit : 512,
+                    name : 'img/[name].[hash:8].[ext]'
+                }
             }
         ]
     },
@@ -58,9 +96,8 @@ var config  = {
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin("public/css/[name].bundle.css", {
-            allChunks: true,
-            publicPath : "/css/"
+        new ExtractTextPlugin("css/[name].bundle.css", {
+            allChunks: true
         })
     ]
 };

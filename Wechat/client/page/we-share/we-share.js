@@ -1,5 +1,5 @@
 
-import WXSdk from "./models/wxsdk.js";
+import WXSdk from "../../components/common/wx/wxsdk";
 //微信获取签名访问地址prefix
 const prefixUrl = 'http://m.we.com:8080/node/wx/signature?referrerUrl';
 //微信回调地址

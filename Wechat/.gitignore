@@ -1,6 +1,7 @@
 /.idea
 .idea/
 
+npm-debug.log
 /build
 /prebuild
 /node_modules

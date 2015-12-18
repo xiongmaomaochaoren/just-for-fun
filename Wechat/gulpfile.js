@@ -2,20 +2,14 @@
  * gulp配置文件
  * Created by wangcheng on 15/12/10.
  */
+'use strict';
 
 /**
- * Todo : 多文件多入口支持
- * Todo : 图片的产出测试
- */
-
-/**
- * Todo : 内部task私有化
- * Todo : 依赖关系简化
- * Todo : help 补充添加
  * Todo : product 和 dev 两种模式支持
  * Todo : 调试流程
  * Todo : 静态资源Url变换
- * Todo : 重构拆分gulpfile.js 和 webpack.config.js \ 路径抽取出来做成变量
+ * Todo : 重构拆分gulpfile.js 和 webpack.config.js
+ * Todo : resource map功能添加
  */
 
 var gulp = require('gulp'),
@@ -30,71 +24,120 @@ var gulp = require('gulp'),
 //webpackDevMiddleware = require('webpack-dev-middleware'),
 //webpackHotMiddleware = require('webpack-hot-middleware');
 
+const BUILD_DEST = {
+    client : './client',
+    prebuild : './prebuild',
+    prebuild_view : './prebuild/views',
+    prebuild_public : './prebuild/public',
+    build : './build',
+    build_view : './build/views',
+    build_map : './build/resource_map',
+    build_public : './build/public',
+    server : './server'
+};
 
-//use webpack to manage all the resources in src/
-gulp.task('webpack', function(){
+gulp.task('clean', function(){
+    let buildGlob = BUILD_DEST.build + '/*';
+    let prebuildGlob = BUILD_DEST.prebuild + '/*';
+    return gulp.src([buildGlob, prebuildGlob], {read: false})
+        .pipe(plugins.rimraf({force : true}));
+});
+
+/**
+ * webpack 只能处理js、css,无法处理html, 需要gulp copy编译html
+ * */
+gulp.task('_html-copy', ['clean'], function(){
+    let pageGlob = BUILD_DEST.client  + '/page/**/*.html';
+    return gulp.src(pageGlob)
+        .pipe(gulp.dest(BUILD_DEST.prebuild_view));
+});
+
+
+gulp.task('webpack', ['_html-copy'], function(){
     return gulp.src('./client/page/redux-todo/redux-todo.js')
         .pipe(webpackStream(webpackConfig, webpack))
-        .pipe(gulp.dest('./prebuild/'));
+        .pipe(gulp.dest(BUILD_DEST.prebuild_public));
 });
 
-gulp.task('html', ['webpack'], function(){
-    return gulp.src('./client/page/redux-todo/redux-todo.html')
-        .pipe(gulp.dest('./prebuild/views/redux-todo'));
-});
 
-//TODO : 图片的自动md5工作
-gulp.task('img', ['webpack'], function(){
-    return gulp.src('./prebuild/*.*')
+
+gulp.task('_img', ['webpack'], function(){
+    //Todo : 只匹配图片
+    let imgGlob = BUILD_DEST.prebuild_public + '/img/**/**';
+    let buildImgDir = BUILD_DEST.build_public + '/img';
+    return gulp.src(imgGlob)
         .pipe(plugins.imagemin({
             progressive: true,
             use: [pngquant({quality: '70-80'})]
         }))
-        //.pipe(plugins.rev())
-        .pipe(gulp.dest('build'))
-        //.pipe(plugins.rev.manifest('build/rev-manifest.json', {
-        //    base: process.cwd() + '/build',
-        //    merge: true
-        //}))
-        .pipe(gulp.dest('build'));
+        .pipe(gulp.dest(buildImgDir));
 });
 
 
-//process all the js file in prebuild/ (using minify/uglify)
-gulp.task('js', ['webpack'],  function() {
-    console.log("gulp js task");
-    return gulp.src('./prebuild/public/js/*.js')
-        //.pipe(plugins.jshint())
+gulp.task('_js', ['webpack'],  function() {
+    let jsGlob = BUILD_DEST.prebuild_public + '/js/**/*.js';
+    let buildJsDir = BUILD_DEST.build_public + '/js';
+    let jsResourceMap = BUILD_DEST.build_map + '/js.json';
+    return gulp.src(jsGlob)
         .pipe(plugins.uglify())
         .pipe(plugins.rev())
-        .pipe(gulp.dest('build/public/js'))
-        .pipe(plugins.rev.manifest('build/resource-map/js.json', {
-            base: process.cwd() + '/build'
+        .pipe(gulp.dest(buildJsDir))
+        .pipe(plugins.rev.manifest(jsResourceMap, {
+            base: BUILD_DEST.build
         }))
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest(BUILD_DEST.build));
 });
 
-//process all the css file in prebuild/
-gulp.task('css', ['webpack', 'img'], function() {
-    console.log("gulp css task");
-    //var mapFile = gulp.src("./build/rev-manifest.json");
-    return gulp.src('./prebuild/public/css/*.css')
+
+gulp.task('_css', ['webpack', '_img'], function() {
+    let cssGlob = BUILD_DEST.prebuild_public + '/css/**/*.css';
+    let buildCssDir = BUILD_DEST.build_public + '/css';
+    let cssResourceMap = BUILD_DEST.build_map + '/css.json';
+    return gulp.src(cssGlob)
         .pipe(plugins.minifyCss())
-        //.pipe(plugins.revReplace({manifest: mapFile}))
         .pipe(plugins.rev())
-        .pipe(gulp.dest('build/public/css'))
-        .pipe(plugins.rev.manifest('build/resource-map/css.json', {
-            base: process.cwd() + '/build',
-            merge: true
+        .pipe(gulp.dest(buildCssDir))
+        .pipe(plugins.rev.manifest(cssResourceMap, {
+            base: BUILD_DEST.build
         }))
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest(BUILD_DEST.build));
+});
+
+/**
+ * js、css生成到一个map会导致resource-map错误,暂时只能分开生成,在这里合并为一个map
+ */
+gulp.task('_merge-resource-map', ['_css', '_js', '_img'] , function(){
+    let mapGlob = BUILD_DEST.build_map + '/*.json';
+    let finalResourceMap = 'all.json';
+    return gulp.src(mapGlob)
+        .pipe(plugins.extend(finalResourceMap))
+        .pipe(gulp.dest(BUILD_DEST.build_map));
+});
+
+/**
+ * gulp task 保证顺序执行的要求 :
+ *   task和它所依赖的task的关系 : Make sure your dependency tasks are correctly using the async run hints: take in a callback or return a promise or event stream.
+ *   依赖的task之间的关系 : The tasks will run in parallel (all at once), so don't assume that the tasks will start/finish in order
+ * */
+gulp.task('_replace-md5', ['webpack', '_css', '_js', '_img', '_merge-resource-map'], function(){
+    let mapFile = gulp.src(BUILD_DEST.build_map + "/all.json");
+    let pageGlob = BUILD_DEST.prebuild_view + '/**/*.html';
+    return gulp.src(pageGlob)
+        .pipe(plugins.revReplace({manifest: mapFile}))
+        .pipe(gulp.dest(BUILD_DEST.build_view));
 });
 
 
-gulp.task('merge-resource-map', ['html', 'css', 'js', 'img'] , function(){
-    return gulp.src('./build/resource-map/*.json')
-        .pipe(plugins.extend('all.json'))
-        .pipe(gulp.dest('./build/resource-map'));
+
+gulp.task('build', ['webpack', '_img', '_js', '_css', '_merge-resource-map', '_replace-md5']);
+
+gulp.task('deploy', ['build'],  function(){
+    var copyFiles = [
+        BUILD_DEST.build + '/**/*.*',
+        '!' + BUILD_DEST.build_map + '/**/*.*'
+    ];
+    gulp.src(copyFiles)
+        .pipe(gulp.dest(BUILD_DEST.server));
 });
 
 
@@ -141,47 +184,16 @@ gulp.task('merge-resource-map', ['html', 'css', 'js', 'img'] , function(){
 //   });
 // });
 
-
-/**
- * gulp task 保证顺序执行的要求 :
- *   task和它所依赖的task的关系 : Make sure your dependency tasks are correctly using the async run hints: take in a callback or return a promise or event stream.
- *   依赖的task之间的关系 : The tasks will run in parallel (all at once), so don't assume that the tasks will start/finish in order
- * */
-gulp.task('replace', ['webpack', 'html', 'css', 'js', 'img', 'merge-resource-map'], function(){
-    var mapFile = gulp.src("./build/resource-map/all.json");
-
-    return gulp.src('./prebuild/views/redux-todo/redux-todo.html')
-        .pipe(plugins.revReplace({manifest: mapFile}))
-        .pipe(gulp.dest('build/views/redux-todo'));
-});
-
-gulp.task('clean', function(){
-    console.log('gulp clean task');
-    return gulp.src(['build/*', 'prebuild/*'], {read: false})
-        .pipe(plugins.rimraf({force : true}));
-});
-
-gulp.task('build', ['clean', 'webpack', 'html', 'img', 'js', 'css', 'merge-resource-map', 'replace']);
-
-gulp.task('deploy', ['build'],  function(){
-    var copyFiles = [
-        './build/**/*.*',
-        '!./build/resource-map/**/*.*'
-    ];
-
-    gulp.src(copyFiles)
-        .pipe(gulp.dest('server/'));
-});
-
 gulp.task('help', function(){
     console.log('---------------------------------------------------------------');
     console.log('gulp [command]  --- with gulp installed globally');
     console.log('Command List:');
     console.log('  webpack  #use webpack to pack all files src/ ---> prebuild/');
-    console.log('  js       #build all js files /prebuild ---> build/ ');
-    console.log('  css      #build all css files /prebuild ---> build/');
-    console.log('  img       #build all picture files /prebuild ---> build/ ');
+    //console.log('  js       #build all js files /prebuild ---> build/ ');
+    //console.log('  css      #build all css files /prebuild ---> build/');
+    //console.log('  img      #build all picture files /prebuild ---> build/ ');
     console.log('  build    #do all the works');
     console.log('  clean    #clear directories such as prebuild/ & build/');
+    console.log('  deploy   #build and deploy from build/ ---> server/ ')
     console.log('---------------------------------------------------------------');
 });
