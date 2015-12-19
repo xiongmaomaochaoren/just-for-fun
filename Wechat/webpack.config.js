@@ -3,6 +3,8 @@
  * Created by wangcheng on 15/12/10.
  */
 
+
+
 /**
  * Todo : common组件抽取
  */
@@ -47,7 +49,8 @@ var config  = {
     //vendors: [ 'console-polyfill', 'object-assign', 'es5-shim/es5-shim', 'es5-shim/es5-sham', './src/utils/mobileRem' ],
     //common : './src/css/common.less'
     output: {
-        publicPath: '',
+        //定义js、css、image等url的前缀以及cdn, 非常重要
+        publicPath: '/static/',
         filename: 'js/[name].bundle.js'
         //path: BASE_DIR + '/prebuild/public/', path 在gulp中定义
     },
@@ -64,15 +67,11 @@ var config  = {
             },
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style', 'css', {
-                    publicPath : '/static/'
-                })
+                loader: ExtractTextPlugin.extract('style', 'css')
             },
             {
                 test: /\.less/,
-                loader: ExtractTextPlugin.extract('style', 'css!less', {
-                    publicPath : '/static/'
-                })
+                loader: ExtractTextPlugin.extract('style', 'css!less')
             },
             {
                 test: /\.woff$/,
