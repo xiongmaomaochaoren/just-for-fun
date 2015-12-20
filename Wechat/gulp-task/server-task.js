@@ -8,15 +8,15 @@
 
 'use strict';
 
-let BUILD_DEST = require('./path-const.js');
+const BUILD_DEST = require('./path-const.js');
 
-let modRewrite = require('connect-modrewrite');
-let browserSync = require('browser-sync').create();
+const modRewrite = require('connect-modrewrite');
+const browserSync = require('browser-sync').create();
 
 /**
  * 将编译后代码部署到Node.js Server中
  * */
-module.exports = function(gulp, gulpPlugin){
+module.exports = function(gulp, gulpPlugin, options){
     return function() {
         let viewGlob = BUILD_DEST.prebuild_view + '/**/*.html';
         let cssGlob = BUILD_DEST.prebuild_public + '/css/**/*.css';
@@ -42,5 +42,12 @@ module.exports = function(gulp, gulpPlugin){
                 ]
             }
         });
+
+        /**
+         * 监控目录自动刷新浏览器
+         * gulp watch基于 gaze开发, 兼容三大操作系统平台 https://github.com/shama/gaze
+         */
+        let clientGlob = BUILD_DEST.client + '/**/**';
+        gulp.watch(clientGlob, ['webpack:dev']);
     }
 }

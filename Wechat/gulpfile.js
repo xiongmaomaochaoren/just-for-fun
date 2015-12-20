@@ -1,27 +1,17 @@
 /**
  * gulp配置文件
  * Created by wangcheng on 15/12/10.
+ * gulp 提供四个Api : src、dest、task、watch
  */
 'use strict';
 
 /**
- * Todo : product 和 dev 两种模式支持 , 通过GULP_ENV参数控制两种开发模式
- * Todo : 调试流程
- * Todo : 静态资源Url变换
  * Todo : resource map功能添加
- * Todo : 增加gulp缓存
+ * Todo : 增加缓存
  */
 
-/**
- * gulp 提供四个Api : src、dest、task、watch
- */
-var gulp = require('gulp'),
-    watch = require('gulp-watch'),
-    gulpLoadPlugins = require('gulp-load-plugins'),
-    gulpPlugin = gulpLoadPlugins();
-
-//webpackDevMiddleware = require('webpack-dev-middleware'),
-//webpackHotMiddleware = require('webpack-hot-middleware');
+const gulp = require('gulp'),
+      gulpPlugin = require('gulp-load-plugins')();
 
 let BUILD_DEST = require('./gulp-task/path-const.js');
 
@@ -37,7 +27,7 @@ function getTask(taskName){
 
 gulp.task('clean', getTask('clean'));
 
-gulp.task('webpack', ['clean'], getTask('webpack'));
+gulp.task('webpack', getTask('webpack'));
 
 gulp.task('image', ['webpack'], getTask('image'));
 
@@ -51,41 +41,18 @@ gulp.task('md5', ['_merge-map'], getTask('md5'));
 
 gulp.task('build', ['webpack', 'image', 'js', 'css', 'md5']);
 
-gulp.task('deploy', ['build'],  getTask('deploy'));
+//前端代码编译发布task, 提测、上线使用
+gulp.task('deploy', ['clean', 'build'],  getTask('deploy'));
+//前端代码快速发布task, 本地调试使用
+gulp.task('deploy:dev', ['build'], getTask('deploy'));
 
-/**
- * gulp watch基于 gaze开发, 兼容三大操作系统平台 https://github.com/shama/gaze
- */
-gulp.task('watch', function(){
+gulp.task('server:dev', ['webpack:dev'], getTask('server'));
+
+gulp.task('watch:pro', function(){
     let clientGlob = BUILD_DEST.client + '/**/**';
-    gulp.watch(clientGlob, ['webpack']);
+    gulp.watch(clientGlob, ['deploy:dev']);
 });
 
-gulp.task('server', ['watch'], getTask('server'));
 
 gulp.task('help', getTask('help'));
 
-// gulp.task('hot', function() {
-//   var bundler = webpack(webpackConfig);
-//   browserSync({
-//     proxy: {
-//       target: 'localhost:3000',
-//       middleware: [
-//         webpackDevMiddleware(bundler, {
-//           publicPath: webpackConfig.output.publicPath,
-//           // stats: webpackConfig.stats,
-//           hot: true,
-//           historyApiFallback: true
-//         }),
-//         webpackHotMiddleware(bundler),
-//       ]
-//     },
-//     files: [
-//       'src/*.*',
-//       'src/templates/*.*',
-//       'src/components/**/*.*',
-//       'src/css/**/*.*',
-//       'src/js/**/*.*'
-//     ]
-//   });
-// });
