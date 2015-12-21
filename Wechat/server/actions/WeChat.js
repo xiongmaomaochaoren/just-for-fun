@@ -8,7 +8,6 @@
 
 let rrdPath = rrd.path;
 
-let co = require("co");
 let requestPromise = require("request-promise");
 let WxSignature = require(rrdPath.MODEL_DIR +  "/wxsignature");
 let WeChatConstant = require(rrdPath.CONSTANTS_DIR + "/wechat");
