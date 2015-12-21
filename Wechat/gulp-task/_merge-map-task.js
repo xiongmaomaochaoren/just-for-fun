@@ -13,7 +13,7 @@ let BUILD_DEST = require('./path-const.js');
 module.exports = function(gulp, gulpPlugin){
     return function() {
         let mapGlob = BUILD_DEST.build_map + '/*.json';
-        let finalResourceMap = 'all.json';
+        let finalResourceMap = 'assets.json';
         return gulp.src(mapGlob)
             .pipe(gulpPlugin.extend(finalResourceMap))
             .pipe(gulp.dest(BUILD_DEST.build_map));

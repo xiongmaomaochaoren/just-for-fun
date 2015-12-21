@@ -49,7 +49,7 @@ var config  = {
     output: {
         //定义js、css、image等url的前缀以及cdn, 非常重要
         publicPath: '/static/',
-        filename: 'js/[name].bundle.js'
+        filename: 'js/[name].pkg.js'
         //path: BASE_DIR + '/prebuild/public/', path 在gulp中定义
     },
     module: {
@@ -93,7 +93,7 @@ var config  = {
     },
     plugins: [
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin("css/[name].bundle.css", {
+        new ExtractTextPlugin("css/[name].pkg.css", {
             allChunks: true
         })
     ]
