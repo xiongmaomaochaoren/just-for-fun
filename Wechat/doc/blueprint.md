@@ -176,16 +176,19 @@ Node.JS是独立与home、mobile之外的一个子系统.能够独立提测、�
 
     1. 下载仓库代码
     2. 下载node_modules : 独立git或者现有git独立目录、shrinkwrap固定版本
-        client
-            dev
-            pro
-        server
-            dev
-            pro
-    3. copy node_modules ： 是否需要提供Linux build版本、或者只是源码，打包前执行rebuild
+        
+        dev
+        pro
+        
+    3. copy node_modules ： 
+    
+        需要copy完整版本的node_modules
+        是否需要提供Linux build版本、或者只是源码，打包前执行rebuild
+        
     4. 编译client端代码 ： gulp + webpack
     5. 生成最终tar包
 
+        copy pro版本node_modules到server里面 
         发布测试机、或者备机
 
     6. 部署代码、重启Node Server
