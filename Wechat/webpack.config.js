@@ -48,7 +48,7 @@ var config  = {
     //common : './src/css/common.less'
     output: {
         //定义js、css、image等url的前缀以及cdn, 非常重要
-        publicPath: '/static/',
+        publicPath: '/node/static/',
         filename: 'js/[name].pkg.js'
         //path: BASE_DIR + '/prebuild/public/', path 在gulp中定义
     },

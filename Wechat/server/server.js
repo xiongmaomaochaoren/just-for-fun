@@ -30,8 +30,9 @@ if( rrd.utils.isProduction() ){
 }
 
 //Todo : http参数配置
-app.use('/static', express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/views'));
+
+app.use(urlPrefix + '/static', express.static(__dirname + '/public'));
+app.use(urlPrefix , express.static(__dirname + '/views'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use( logMiddleware.configLog(finalLogConf) );

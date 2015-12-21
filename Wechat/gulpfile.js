@@ -46,7 +46,7 @@ gulp.task('deploy', ['clean', 'build'],  getTask('deploy'));
 //前端代码快速发布task, 本地调试使用
 gulp.task('deploy:dev', ['build'], getTask('deploy'));
 
-gulp.task('server:dev', ['webpack:dev'], getTask('server'));
+gulp.task('server:dev', ['webpack'], getTask('server'));
 
 gulp.task('watch:pro', function(){
     let clientGlob = BUILD_DEST.client + '/**/**';

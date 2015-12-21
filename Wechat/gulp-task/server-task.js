@@ -36,8 +36,8 @@ module.exports = function(gulp, gulpPlugin, options){
                 baseDir : BUILD_DEST.prebuild,
                 middleware : [
                     modRewrite([
-                        '^/static/(.*) /public/$1',
-                        '(.*).html /views/$1.html'
+                        '^/node/static/(.*) /public/$1',
+                        '^/node/(.*).html /views/$1.html'
                     ])
                 ]
             }
@@ -48,6 +48,6 @@ module.exports = function(gulp, gulpPlugin, options){
          * gulp watch基于 gaze开发, 兼容三大操作系统平台 https://github.com/shama/gaze
          */
         let clientGlob = BUILD_DEST.client + '/**/**';
-        gulp.watch(clientGlob, ['webpack:dev']);
+        gulp.watch(clientGlob, ['webpack']);
     }
 }

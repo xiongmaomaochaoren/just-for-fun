@@ -4,7 +4,7 @@
   "description": "人人贷WE理财 Node.js Project Code",
   "scripts": {
     "help" : "gulp help",
-    "server:dev" : "gulp server:dev",
+    "server:dev" : "gulp server:dev && cd ./server && NODE_ENV=debug node server.j",
     "server:pro" : "gulp watch:pro && cd ./server && NODE_ENV=debug node server.js",
     "build" : "gulp build",
     "deploy" : "gulp deploy"
