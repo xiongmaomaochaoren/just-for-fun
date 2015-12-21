@@ -6,12 +6,15 @@
 
 'use strict';
 
+require('babel-core/register');
+
 require("./lib/rrd.js");
 
 var cluster = require('cluster');
 
 let rrdPath = rrd.path;
 let express = require("express");
+let swig = require('swig');
 let bodyParser = require('body-parser');
 let logMiddleware = require('./plugins/rrd-log-middleware.js');
 var routerV1 = require('./routers/router-index.js');
@@ -27,7 +30,15 @@ if( rrd.utils.isProduction() ){
     finalLogConf = logConfig.prod;
 }else{
     finalLogConf = logConfig.dev;
+    app.set('view cache', false );
+    swig.setDefaults({
+        cache : false
+    });
 }
+
+app.engine('html', swig.renderFile);
+app.set('view engine', 'html');
+app.set('views', rrdPath.VIEW_DIR);
 
 //Todo : http参数配置
 
