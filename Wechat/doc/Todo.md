@@ -18,11 +18,6 @@
     MVC框架 ：
         合适的MVC框架
 
-### 编译
-
-* package.json 能否拆分为多个维护
-* dependency 和 dev 
-* package.json注释
 
 ### 提测
 
