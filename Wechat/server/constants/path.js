@@ -20,6 +20,8 @@ const CONSTANTS_DIR = BASE_DIR + DS + 'constants';
 const TEST_DIR = BASE_DIR + DS + 'test';
 //模板路径
 const VIEW_DIR = BASE_DIR + DS + 'views';
+//开发的模板路径
+const DEV_VIEW_DIR = BASE_DIR + DS + '..' + DS + 'prebuild' + DS + 'views';
 //前后端通用代码的目录
 const ISOMORPHIC_DIR = path.dirname( BASE_DIR ) + DS + 'isomorphic';
 //前后端通用的组件代码目录
@@ -35,5 +37,6 @@ module.exports = {
     CONSTANTS_DIR,
     TEST_DIR,
     VIEW_DIR,
+    DEV_VIEW_DIR,
     ISOMORPHIC_COMPONENT_DIR
 }

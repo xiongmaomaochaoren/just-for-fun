@@ -7,27 +7,27 @@
 
 const COMPONENT_DIR = global.rrd.path.ISOMORPHIC_COMPONENT_DIR;
 
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 
-let createStoreWithMiddleware = require( `${COMPONENT_DIR}/todo/store/middlewareStore` );
-let App = require( `${COMPONENT_DIR}/todo/containers/App` );
+let createStoreWithMiddleware = require( `${COMPONENT_DIR}/todo/store/middlewareStore` ).default;
+let App = require( `${COMPONENT_DIR}/todo/containers/App` ).default;
 import { Provider } from "react-redux";
-var todoReduce =  require(`${COMPONENT_DIR}/todo/reduces/reduces`);
+var todoReduce =  require(`${COMPONENT_DIR}/todo/reduces/reduces`).default;
 
 class Test1 {
 
     list(req, res, next ){
 
-        //let store = createStoreWithMiddleware( todoReduce, {} );
+        let store = createStoreWithMiddleware( todoReduce, {} );
 
         let str = renderToString(
-            <div>
-                <TodoContainer />
-                <CalContainer />
-            </div>
+            <Provider store={store}>
+                <App />
+            </Provider>
         );
 
-        res.render('test1/index.html', {
+        res.render('redux-todo/redux-todo.html', {
             name : 'swig tpl',
             content : str
         });

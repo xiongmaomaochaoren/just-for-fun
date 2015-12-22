@@ -17,7 +17,7 @@ class Calculator extends Component{
 
     render(){
         return (
-            <div>
+            <div className="calculator-component">
                 <div className="cal-content">
                     <span className="cal-value">{this.props.calValue}</span>
                 </div>

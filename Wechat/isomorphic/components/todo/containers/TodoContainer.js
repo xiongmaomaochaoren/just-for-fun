@@ -36,7 +36,7 @@ class TodoContainer extends Component{
     render(){
         console.log("TodoContainer render method called");
         return (
-            <div>
+            <div className="todo-container">
                 <TodoHeader />
                 <AddTodo onAddTodoClick={ (text) => this._handleAddTodoClick(text) }/>
                 <TodoList todos={this.props.todos} onTodoListClick={ (index) => this._handleTodoListClick(index) } />
