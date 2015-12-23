@@ -1,4 +1,7 @@
 
+##全局依赖
+* `npm install -g nodemon`  用于监控server目录下文件改变,自动restart
+
 ## 安装
 * npm install express --save --save-exact
 

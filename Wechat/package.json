@@ -4,8 +4,10 @@
   "description": "人人贷WE理财 Node.js Project Code",
   "scripts": {
     "help": "gulp help",
-    "server:dev": "gulp server:dev && cd ./server && NODE_ENV=debug node server.js",
-    "server:pro": "gulp watch:pro && cd ./server && NODE_ENV=debug node server.js",
+    "client:dev": "gulp server:dev",
+    "client:pro": "gulp watch:pro",
+    "server:dev": "NODE_ENV=development nodemon ./server/server.js",
+    "server:pro": "NODE_ENV=production nodemon ./server/server.js",
     "build": "gulp build",
     "deploy": "gulp deploy"
   },
@@ -21,13 +23,15 @@
     "co": "^4.6.0",
     "console-polyfill": "^0.2.2",
     "continuation-local-storage": "^3.1.4",
+    "cookie-parser": "^1.4.0",
     "es5-shim": "^4.3.0",
     "express": "^4.13.3",
+    "express-request-id": "^1.1.0",
     "fs-extra": "^0.26.2",
     "glob": "^6.0.1",
     "isomorphic-fetch": "^2.2.0",
     "jquery": "^2.1.4",
-    "jssha": "1.6.0",
+    "jssha": "2.0.2",
     "object-assign": "^4.0.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.2",
@@ -39,6 +43,7 @@
     "swig": "^1.4.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.3.17",
     "babel-loader": "^6.1.0",
     "babel-polyfill": "^6.2.0",
     "browser-sync": "^2.10.1",

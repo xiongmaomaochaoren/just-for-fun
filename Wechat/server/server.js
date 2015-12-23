@@ -18,15 +18,20 @@ require.extensions['.css'] = require.extensions['.less'] = require.extensions['.
 
 require("./lib/rrd.js");
 
+let rrd = global.rrd;
+
 var cluster = require('cluster');
 
 let rrdPath = rrd.path;
 let express = require("express");
 let swig = require('swig');
+let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let expressRequestId = require('express-request-id');
 let logMiddleware = require('./plugins/rrd-log-middleware.js');
 var routerV1 = require('./routers/router-index.js');
 var errorHandle = require('./plugins/rrd-error-middleware.js');
+var devMiddleware = require('./plugins/rrd-dev-middleware.js');
 
 
 //swig configuration
@@ -51,8 +56,6 @@ app.set('view engine', 'html');
 
 //Todo : http参数配置
 
-console.log('is production:' + IS_PRODUCTION);
-
 if( IS_PRODUCTION ){
     finalLogConf = logConfig.prod;
 
@@ -75,28 +78,33 @@ if( IS_PRODUCTION ){
 
 }
 
-
+app.use( cookieParser() );
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use( expressRequestId() );
 app.use( logMiddleware.configLog(finalLogConf) );
 
 if( ! IS_PRODUCTION ){
     //测试环境,允许跨域
-    app.use(function(req, res, next){
-        res.set({
-            'Access-Control-Allow-Origin' : '*'
-        });
-        next();
-    });
+    app.use( devMiddleware() );
 }
 
 app.use( urlPrefix, routerV1);
 
 app.use( errorHandle() );
 
+//全局的统计单例
+Object.defineProperty(rrd, 'weLog', {
+    enumerable: true,
+    writable: false,
+    value: logMiddleware.getLog()
+} );
+
+rrd.weLog.trace('is production:' + IS_PRODUCTION);
+
 process.on('uncaughtException', function uncaughtException(err){
 
-    logMiddleware.getLog().fatal( err );
+    rrd.weLog.fatal( err );
 
     var timer = setTimeout(function(){
         process.exit(1);

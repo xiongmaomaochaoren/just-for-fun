@@ -25,6 +25,10 @@ class TodoAction {
             res.weLog.error(error);
         }
     }
+
+    detail(req, res, next){
+        res.send('detail todo=======2');
+    }
 }
 
 module.exports = TodoAction;
