@@ -6,6 +6,8 @@
 
 'use strict';
 
+require("./lib/rrd.js");
+
 require('babel-register')({
     presets : ['es2015','react']
 });
@@ -15,8 +17,6 @@ require.extensions['.css'] = require.extensions['.less'] = require.extensions['.
     //logMiddleware.getLog().info('.css required');
     return null;
 };
-
-require("./lib/rrd.js");
 
 let rrd = global.rrd;
 

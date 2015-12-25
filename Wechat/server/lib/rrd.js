@@ -6,7 +6,6 @@
 
 'use strict';
 
-//const RRDPath = require("./path.js");
 const rpath = require('../constants/path.js');
 const config = require('../config');
 const rrdUtils = require('./rrd-utils.js');

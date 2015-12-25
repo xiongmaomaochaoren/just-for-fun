@@ -17,9 +17,6 @@ class TodoAction {
                 charset : 'utf8'
             });
             let contentJson = JSON.parse(listContent);
-            res.set({
-                'Access-Control-Allow-Origin' : '*'
-            });
             res.json(contentJson);
         }catch(error){
             res.weLog.error(error);

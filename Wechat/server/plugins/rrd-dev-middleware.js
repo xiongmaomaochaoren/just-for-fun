@@ -11,7 +11,9 @@ function devMiddleware(){
     return function( req, res, next){
 
         res.set({
-            'Access-Control-Allow-Origin' : '*'
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST,GET",
+            "Access-Control-Allow-Credentials": "true"
         });
         next();
 
