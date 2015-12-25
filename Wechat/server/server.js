@@ -6,11 +6,11 @@
 
 'use strict';
 
-require("./lib/rrd.js");
-
 require('babel-register')({
     presets : ['es2015','react']
 });
+
+require("./lib/rrd.js");
 
 //服务端渲染时,require css less 图片等资源报错解决方法 http://stackoverflow.com/questions/27893448/rendering-react-components-with-styles-on-the-server/29358828#29358828
 require.extensions['.css'] = require.extensions['.less'] = require.extensions['.png'] = require.extensions['.jpg'] = function(){

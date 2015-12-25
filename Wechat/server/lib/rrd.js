@@ -12,7 +12,9 @@ const rrdUtils = require('./rrd-utils.js');
 const errorFactory = require('./error-factory.js');
 
 class RRD{
-
+    __hackfix(){
+        console.log("空class,babel无缓存情况下会出错");
+    }
 }
 
 Object.defineProperty(global, 'rrd', {
