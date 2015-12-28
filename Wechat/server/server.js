@@ -10,6 +10,8 @@ require('babel-register')({
     presets : ['es2015','react']
 });
 
+//TODO : http://fex.baidu.com/blog/2015/05/nodejs-hot-swapping/
+
 require("./lib/rrd.js");
 
 //服务端渲染时,require css less 图片等资源报错解决方法 http://stackoverflow.com/questions/27893448/rendering-react-components-with-styles-on-the-server/29358828#29358828
