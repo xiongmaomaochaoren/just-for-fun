@@ -14,7 +14,7 @@ class CalContainer extends Component{
     }
 
     render(){
-        console.log("CalContainer render method called");
+        //console.log("CalContainer render method called");
         return (
             <Calculator onCalBtnClick={ (calInfo) => this._handleCalBtnClick(calInfo) } base="2" calValue={this.props.calValue}/>
         )

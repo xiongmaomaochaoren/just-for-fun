@@ -34,7 +34,7 @@ class TodoContainer extends Component{
     }
 
     render(){
-        console.log("TodoContainer render method called");
+        //console.log("TodoContainer render method called");
         return (
             <div className="todo-container">
                 <TodoHeader />

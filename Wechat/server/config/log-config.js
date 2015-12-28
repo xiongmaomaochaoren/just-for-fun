@@ -51,10 +51,10 @@ let logConfig = {
             //    level : 'warn',
             //    path : warnLogFile
             //},
-            //{
-            //    level : 'error',
-            //    path : errorLogFile
-            //},
+            {
+                level : 'error',
+                path : errorLogFile
+            },
             {
                 level : 'fatal',
                 path : fatalLogFile

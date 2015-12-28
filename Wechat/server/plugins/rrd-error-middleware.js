@@ -14,7 +14,7 @@ function rrdErrorMiddleware( conf ){
 
     return function( err, req, res, next ){
 
-        var httpStatus = err.httpStatus || 500;
+        var httpStatus = res.httpStatus || 500;
         var msg = err.showMessage || '服务器异常';
 
         res.weLog.error({err : err}, err.message);
