@@ -5,3 +5,4 @@
 # 3. 解压pro中的 node_modules.tar.gz , copy到server中(运行时环境)
 # 4. 整体生成一个tar包
 
+# 5. npm shrinkwrap 功能添加,锁定npm依赖资源包版本

@@ -1,30 +1,19 @@
 
 ## TODO LIST
 
-### 开发
+### 上线
 
-* 考虑
+#### 毛承杰
 
-    数据获取(数据库、ajax请求)应该是在model层还是actions层封装
-    https://github.com/matthew-andrews/isomorphic-fetch  ： ajax请求模块
+* 下载页面迁移
+* 压力测试
+* log监控、报警
 
-* 后续
+#### 王程
 
-    开发 ：
-        开发模式、线上模式
-    Node模块 ：
-        node passport
-        node ral
-    MVC框架 ：
-        合适的MVC框架
+* PM2配置集成
+* build脚本
+* deploy脚本
 
-
-### 提测
-
-
-### 线上
-
-* Nginx 转发配置
-* 监控、报警
-
-    Node Log模块
+* 测试机、线上机器环境准备
+    
