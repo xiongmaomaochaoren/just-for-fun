@@ -30,6 +30,7 @@ let swig = require('swig');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let expressRequestId = require('express-request-id');
+let morgan = require('morgan');
 let logMiddleware = require('./plugins/rrd-log-middleware.js');
 var routerV1 = require('./routers/router-index.js');
 var errorHandle = require('./plugins/rrd-error-middleware.js');
@@ -90,6 +91,9 @@ if( ! IS_PRODUCTION ){
     //测试环境,允许跨域
     app.use( devMiddleware() );
 }
+
+//access log 日志
+app.use( morgan('combined') );
 
 app.use( urlPrefix, routerV1);
 
